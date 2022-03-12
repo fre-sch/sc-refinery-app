@@ -88,8 +88,8 @@ export default (props) => {
         })
         .catch(() => {})
     },
-    100,
-    [queryState.queryParams]
+    [queryState.queryParams],
+    300
   )
 
   return (
@@ -109,7 +109,7 @@ export default (props) => {
         onClick={(page) => queryDispatch("page", { page })}
       />
       <div class="text-end">
-        <a href="/app/admin/user/new" type="button" class="btn btn-primary">
+        <a href="/app/admin/user/create" type="button" class="btn btn-primary">
           Create
         </a>
       </div>

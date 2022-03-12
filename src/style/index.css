@@ -30,3 +30,7 @@ input[type=text], input[type=password],textarea {
 .table > :not(:first-child) {
     border-top: none;
 }
+
+.spinner-overlay {
+    background-color: rgba(var(--bs-light-rgb), 0.7);
+}

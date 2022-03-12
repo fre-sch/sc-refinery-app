@@ -4,6 +4,7 @@ import useQueryState from "./_query"
 import Breadcrumb from "../../components/breadcrumb"
 import Pagination from "../../components/pagination"
 import { useAppContext } from "../../components/app"
+import { SpinnerOverlay } from "../../components/spinner"
 
 const columns = [
   {
@@ -55,6 +56,7 @@ export default (props) => {
 
   debounceEffect(
     () => {
+      queryDispatch("loading", {})
       apiConnector
         .api("GET", "/ore/?" + queryState.queryParams)
         .fetch()
@@ -64,10 +66,9 @@ export default (props) => {
         })
         .catch(() => {})
     },
-    800,
-    [queryState.queryParams]
+    [queryState.queryParams],
+    300
   )
-  console.log(queryState)
 
   return (
     <div class="m-3 flex-grow-1">
@@ -82,7 +83,9 @@ export default (props) => {
         queryState={queryState}
         queryDispatch={queryDispatch}
         onRowClicked={(row) => route(`/app/admin/ore/${row.id}`)}
-      />
+      >
+        <SpinnerOverlay isReady={queryState.status != "loading"}/>
+      </AdminDataTable>
       <Pagination
         total={queryState.totalPages}
         current={queryState.page}

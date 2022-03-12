@@ -1,6 +1,5 @@
 import { useEffect, useReducer } from "preact/hooks"
 
-
 export const dispatchEvent = (element, eventName, eventDetails) => {
   element.dispatchEvent(new CustomEvent(eventName, {
     detail: eventDetails,
@@ -10,10 +9,11 @@ export const dispatchEvent = (element, eventName, eventDetails) => {
 }
 
 
-export const debounceEffect = (fun, time, deps) => useEffect(() => {
-  const timeoutId = setTimeout(fun, time)
-  return () => clearTimeout(timeoutId)
-}, deps)
+export const debounceEffect = (fun, deps, time=250) =>
+  useEffect(() => {
+    const timeoutId = setTimeout(fun, time)
+    return () => clearTimeout(timeoutId)
+  }, deps)
 
 
 export const stopEvent = (fn) => (ev) => {

@@ -10,3 +10,7 @@ export const IconSort = ({ value }) => (
           ? "sort-down"
           : ""} />
 )
+
+class Foo {
+  ctor
+}

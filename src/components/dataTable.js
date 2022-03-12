@@ -2,12 +2,26 @@ import classnames from "classnames/dedupe"
 
 const _defaultRowClicked = () => { }
 
-export default ({ columns, items, view = defaultTableView(), onRowClicked=_defaultRowClicked }) => (
-  <table class="table table-hover p-0" style="table-layout: fixed">
-    <ColGroup columns={columns} />
-    <TableHeader columns={columns} view={view}/>
-    <TableBody columns={columns} items={items} view={view} onRowClicked={onRowClicked}/>
-  </table>
+export default ({
+  columns,
+  items,
+  view = defaultTableView(),
+  onRowClicked = _defaultRowClicked,
+  children
+}) => (
+  <div class="data-table position-relative">
+    <table class="table table-hover p-0" style="table-layout: fixed">
+      <ColGroup columns={columns} />
+      <TableHeader columns={columns} view={view} />
+      <TableBody
+        columns={columns}
+        items={items}
+        view={view}
+        onRowClicked={onRowClicked}
+      />
+    </table>
+    {children}
+  </div>
 )
 
 const viewHeaderColumn = (column) => {

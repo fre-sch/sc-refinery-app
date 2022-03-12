@@ -14,7 +14,7 @@ export const useFilterState = () => useReducer(filterReducer, {})
 
 export const FilterInput = ({ onChange, value, debounce=200, id="UNINITIALIZED" }) => {
   const [_value, setValue] = useState(value)
-  debounceEffect(() => onChange(_value), debounce, [_value])
+  debounceEffect(() => onChange(_value), [_value], debounce)
   return <div class="input-group input-group-sm">
     <input id={id} type="text" value={_value} class="form-control"
       placeholder="type to filter..."

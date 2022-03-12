@@ -3,7 +3,7 @@ import { SortingTableHeader } from "../../components/sorting"
 import { FilteringTableHeader, FilterInput } from "../../components/filtering"
 
 const bodyViewJson = (item) => (
-  <td class="border-top">
+  <td>
     <pre class="m-0">{JSON.stringify(item)}</pre>
   </td>
 )
@@ -61,10 +61,10 @@ const columnViewSelect = (columns, queryState, queryDispatch) =>
     bodyViewSelect(headerViewSelect({ ...column }, queryState, queryDispatch))
   )
 
-export default ({ columns, queryState, queryDispatch, onRowClicked }) => (
+export default ({ columns, queryState, queryDispatch, onRowClicked, children }) => (
   <DataTable
     columns={columnViewSelect(columns, queryState, queryDispatch)}
     items={queryState.items}
     onRowClicked={onRowClicked}
-  />
+  >{children}</DataTable>
 )

@@ -65,8 +65,8 @@ export default (props) => {
         })
         .catch(() => {})
     },
-    800,
-    [queryState.queryParams]
+    [queryState.queryParams],
+    300
   )
 
   return (

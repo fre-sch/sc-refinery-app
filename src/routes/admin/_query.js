@@ -26,9 +26,13 @@ const handleQueryState = (state, action) => {
       }
       return { ...nextState, queryParams: queryParams(nextState) }
     }
+    case "loading": {
+      return {...state, status: "loading"}
+    }
     case "querySuccess": {
       return {
         ...state,
+        status: "ready",
         items: action.items,
         totalCount: action.total_count,
         totalPages: Math.ceil(action.total_count / state.perPage)
@@ -48,6 +52,7 @@ const queryParams = ({ page, perPage, sort, filter }) => {
 
 export default () => {
   const initState = {
+    status: "init",
     page: 0,
     perPage: 20,
     sort: {},
