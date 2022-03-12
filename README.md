@@ -1,6 +1,6 @@
 # SCREFINERY APP
 
-A frontend to SCREFINERY API
+A frontend to SCREFINERY API (github.com/fre-sch/sc-refinery-api)
 
 ## CLI Commands
 
