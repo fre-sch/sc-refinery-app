@@ -3,6 +3,7 @@ import AdminDataTable from "./_table"
 import useQueryState from "./_query"
 import Breadcrumb from "../../components/breadcrumb"
 import { useAppContext } from "../../components/app"
+import { route } from "preact-router"
 
 const columns = [
   {

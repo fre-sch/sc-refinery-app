@@ -10,7 +10,7 @@ export default ({
   children
 }) => (
   <div class="data-table position-relative">
-    <table class="table table-hover p-0" style="table-layout: fixed">
+    <table class="table table-hover table-sm p-0" style="table-layout: fixed">
       <ColGroup columns={columns} />
       <TableHeader columns={columns} view={view} />
       <TableBody

@@ -1,6 +1,6 @@
-import { Fragment } from "preact"
 import { stopEvent } from "../../components/util"
 import { useState, useEffect } from "preact/hooks"
+import Input from "../../components/form/input"
 
 const resources = [
   "user",
@@ -74,75 +74,57 @@ const UserPermsForm = ({ scopes = [], onChange }) => {
   )
 }
 
-export default ({ user, onSave }) => {
+export default ({ model, onSave }) => {
   const [state, setState] = useState({
-    user
+    model
   })
-  const updateUser = (data) => setState({
+  const updateModel = (data) => setState({
     ...state,
-    user: {...state.user, ...data}
+    model: {...state.model, ...data}
   })
 
   return (
-    <Fragment>
+    <form action="javascript:void(0)">
       <div>
-        <div class="mb-3">
-          <label for="user-mail" class="form-label">
-            Email address
-          </label>
-          <input
-            type="text"
-            class="form-control"
-            id="user-mail"
-            placeholder="user@mail"
-            value={state.mail}
-            onChange={(e) => updateUser({ mail: e.target.value })}
-          />
-        </div>
-        <div class="mb-3">
-          <label for="user-name" class="form-label">
-            Name
-          </label>
-          <input
-            type="text"
-            class="form-control"
-            id="user-name"
-            value={state.name}
-            onChange={(e) => updateUser({ name: e.target.value })}
-          />
-        </div>
-        <div class="mb-3">
-          <label for="user-password" class="form-label">
-            Password
-          </label>
-          <input
-            type="password"
-            class="form-control"
-            id="user-password"
-            onChange={(e) => updateUser({ password: e.target.value })}
-          />
-        </div>
-        <div class="mb-3">
-          <label for="user-password-confirm" class="form-label">
-            Password (confirm)
-          </label>
-          <input
-            type="password"
-            class="form-control"
-            id="user-password-confirm"
-            onChange={(e) => updateUser({ password_confirm: e.target.value })}
-          />
-        </div>
+        <Input
+          label="Email address"
+          type="text"
+          class="form-control"
+          id="user-mail"
+          placeholder="user@mail"
+          value={state.model.mail}
+          onChange={(e) => updateModel({ mail: e.target.value })}
+        />
+        <Input
+          label="Name"
+          type="text"
+          class="form-control"
+          id="user-name"
+          value={state.model.name}
+          onChange={(e) => updateModel({ name: e.target.value })}
+        />
+        <Input
+          label="Password"
+          type="password"
+          class="form-control"
+          id="user-password"
+          onChange={(e) => updateModel({ password: e.target.value })}
+        />
+        <Input
+          label="Password Confirmation"
+          type="password"
+          class="form-control"
+          id="user-password-confirm"
+          onChange={(e) => updateModel({ password_confirm: e.target.value })}
+        />
         <div class="form-check">
           <input
             class="form-check-input"
             type="checkbox"
-            value={state.is_active}
+            value={state.model.is_active}
             id="user-active"
-            checked={state.is_active}
-            onChange={(e) =>
-              updateUser({ is_active: e.target.checked })
-            }
+            checked={state.model.is_active}
+            onChange={(e) => updateModel({ is_active: e.target.checked })}
           />
           <label class="form-check-label" for="user-active">
             Active
@@ -151,7 +133,7 @@ export default ({ user, onSave }) => {
       </div>
       <UserPermsForm
         scopes={state.scopes}
-        onChange={(val) => updateUser({ scopes: val })}
+        onChange={(val) => updateModel({ scopes: val })}
       />
       <div class="d-flex justify-content-between mt-3">
         <button type="submit" class="btn btn-danger">
@@ -160,11 +142,11 @@ export default ({ user, onSave }) => {
         <button
           type="submit"
           class="btn btn-primary"
-          onClick={() => onSave(state)}
+          onClick={() => onSave(state.model)}
         >
           Save
         </button>
       </div>
-    </Fragment>
+    </form>
   )
 }

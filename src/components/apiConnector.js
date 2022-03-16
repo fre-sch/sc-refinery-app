@@ -76,7 +76,7 @@ class ApiRequest {
   fetch = () =>
     fetch(this.makeRequest())
     .then(response =>
-      response.ok
+      (response.ok && response.status >= 200 && response.status < 400)
       ? Promise.resolve( new ApiRequestContext(response, this) )
       : Promise.reject( new ApiRequestContext(response, this) )
     )

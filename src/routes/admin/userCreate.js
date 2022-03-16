@@ -4,7 +4,7 @@ import UserForm from "./_userForm"
 
 export default (props) => {
   const { apiConnector } = useAppContext()
-  const newUser = {
+  const model = {
     id: "",
     mail: "",
     password: "",
@@ -13,7 +13,7 @@ export default (props) => {
     scopes: [],
   }
 
-  const createUser = (data) => {
+  const createModel = (data) => {
     apiConnector
       .api("POST", "/user/")
       .json(data)
@@ -34,7 +34,7 @@ export default (props) => {
           { label: "Create" },
         ]}
       />
-      <UserForm user={newUser} onSave={createUser} />
+      <UserForm model={model} onSave={createModel} />
     </div>
   )
 }

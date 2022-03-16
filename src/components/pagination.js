@@ -3,7 +3,7 @@ import classnames from "classnames/dedupe"
 
 export default ({ total, current, onClick }) => (
   <nav>
-    <ul class="pagination justify-content-center">
+    <ul class="pagination pagination-sm justify-content-center">
       <li class={classnames("page-item", { disabled: current == 0 })}>
         <a
           class="page-link"

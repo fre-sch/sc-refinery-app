@@ -88,6 +88,11 @@ export default (props) => {
         current={queryState.page}
         onClick={(page) => queryDispatch("page", { page })}
       />
+      <div class="text-end">
+        <a href="/app/admin/station/create" type="button" class="btn btn-primary">
+          Create
+        </a>
+      </div>
     </div>
   )
 }
