@@ -1,6 +1,9 @@
 import DataTable from "../../components/dataTable"
 import { SortingTableHeader } from "../../components/sorting"
 import { FilteringTableHeader, FilterInput } from "../../components/filtering"
+import { SpinnerOverlay } from "../../components/spinner"
+import Pagination from "../../components/pagination"
+import { Fragment } from "preact"
 
 const bodyViewJson = (item) => (
   <td>
@@ -61,10 +64,19 @@ const columnViewSelect = (columns, queryState, queryDispatch) =>
     bodyViewSelect(headerViewSelect({ ...column }, queryState, queryDispatch))
   )
 
-export default ({ columns, queryState, queryDispatch, onRowClicked, children }) => (
-  <DataTable
-    columns={columnViewSelect(columns, queryState, queryDispatch)}
-    items={queryState.items}
-    onRowClicked={onRowClicked}
-  >{children}</DataTable>
+export default ({ columns, queryState, queryDispatch, onRowClicked }) => (
+  <Fragment>
+    <DataTable
+      columns={columnViewSelect(columns, queryState, queryDispatch)}
+      items={queryState.items}
+      onRowClicked={onRowClicked}
+    >
+      <SpinnerOverlay isReady={queryState.status != "loading"} />
+    </DataTable>
+    <Pagination
+      total={queryState.totalPages}
+      current={queryState.page}
+      onClick={(page) => queryDispatch("page", { page })}
+    />
+  </Fragment>
 )

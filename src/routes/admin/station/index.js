@@ -1,9 +1,9 @@
-import { debounceEffect } from "../../components/util"
-import AdminDataTable from "./_table"
-import useQueryState from "./_query"
-import Breadcrumb from "../../components/breadcrumb"
-import Pagination from "../../components/pagination"
-import { useAppContext } from "../../components/app"
+import { debounceEffect } from "../../../components/util"
+import AdminDataTable from "../_table"
+import useQueryState from "../_query"
+import Breadcrumb from "../../../components/breadcrumb"
+import { useAppContext } from "../../../components/app"
+import { route } from "preact-router"
 
 const columns = [
   {
@@ -14,7 +14,7 @@ const columns = [
       value: "id",
     },
     sortable: "id",
-    width: 0.5,
+    width: 0.5
   },
   {
     header: {
@@ -25,7 +25,7 @@ const columns = [
     },
     filterable: "name",
     sortable: "name",
-    width: 4,
+    width: 5
   },
   {
     header: {
@@ -35,7 +35,7 @@ const columns = [
       value: "created",
     },
     sortable: "created",
-    width: 1,
+    width: 2
   },
   {
     header: {
@@ -45,7 +45,7 @@ const columns = [
       value: "updated",
     },
     sortable: "updated",
-    width: 1,
+    width: 2
   },
 ]
 
@@ -56,7 +56,7 @@ export default (props) => {
   debounceEffect(
     () => {
       apiConnector
-        .api("GET", "/mining_session/?" + queryState.queryParams)
+        .api("GET", "/station/?" + queryState.queryParams)
         .fetch()
         .then((result) => result.json())
         .then((context) => {
@@ -67,27 +67,30 @@ export default (props) => {
     [queryState.queryParams],
     300
   )
-  console.log(queryState)
 
   return (
     <div class="m-3 flex-grow-1">
       <Breadcrumb
         items={[
           { label: "Admin", href: "/app/admin" },
-          { label: "Mining Session", href: "/app/admin/mining_session" },
+          { label: "Station", href: "/app/admin/station" },
         ]}
       />
       <AdminDataTable
         columns={columns}
         queryState={queryState}
         queryDispatch={queryDispatch}
-        onRowClicked={(row) => route(`/app/admin/mining_session/${row.id}`)}
+        onRowClicked={(row) => route(`/app/admin/station/${row.id}`)}
       />
-      <Pagination
-        total={queryState.totalPages}
-        current={queryState.page}
-        onClick={(page) => queryDispatch("page", { page })}
-      />
+      <div class="text-end">
+        <a
+          href="/app/admin/station/create"
+          type="button"
+          class="btn btn-primary"
+        >
+          Create
+        </a>
+      </div>
     </div>
   )
 }

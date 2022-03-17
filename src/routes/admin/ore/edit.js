@@ -1,8 +1,9 @@
-import Breadcrumb from "../../components/breadcrumb"
-import Spinner from "../../components/spinner"
+import Breadcrumb from "../../../components/breadcrumb"
+import Spinner from "../../../components/spinner"
 import { useEffect, useReducer } from "preact/hooks"
-import { useAppContext } from "../../components/app"
-import MethodForm from "./_methodForm"
+import { useAppContext } from "../../../components/app"
+import OreForm from "./_form"
+import { route } from "preact-router"
 
 const handleForm = (state, action) => {
   switch (action.type) {
@@ -10,13 +11,11 @@ const handleForm = (state, action) => {
       return { ...state, isReady: false }
     }
     case "loadSuccess": {
-      const { model, ores } = action
+      const { model } = action
       const nextState = { ...state }
       if (model !== undefined)
         nextState.model = model
-      if (ores !== undefined)
-        nextState.ores = ores
-      nextState.isReady = (nextState.ores !== null && nextState.model !== null)
+      nextState.isReady = (nextState.model !== null)
       return nextState
     }
     default:
@@ -29,7 +28,6 @@ export default ({ modelId }) => {
   const [state, dispatch] = useReducer(handleForm, {
     modelId,
     model: null,
-    ores: null,
     isReady: false,
   })
 
@@ -37,7 +35,7 @@ export default ({ modelId }) => {
     if (state.model !== null) return;
     dispatch({type: "loading"})
     apiConnector
-      .api("GET", `/method/${state.modelId}`)
+      .api("GET", `/ore/${state.modelId}`)
       .fetch()
       .then((result) => result.json())
       .then((context) => {
@@ -49,23 +47,10 @@ export default ({ modelId }) => {
       .catch(() => {})
   }, [state.model])
 
-  useEffect(() => {
-    if (state.ores !== null) return;
+  const saveModel = (model) => {
     dispatch({ type: "loading" })
     apiConnector
-      .api("GET", "/ore/?limit=-1")
-      .fetch()
-      .then((result) => result.json())
-      .then((context) => {
-        dispatch({ type: "loadSuccess", ores: context.json.items })
-      })
-      .catch(() => {})
-  }, [state.ores])
-
-  const updateModel = (model) => {
-    dispatch({ type: "loading" })
-    apiConnector
-      .api("PUT", `/method/${model.id}`)
+      .api("PUT", `/ore/${model.id}`)
       .json(model)
       .fetch()
       .then((result) => result.json())
@@ -75,21 +60,31 @@ export default ({ modelId }) => {
       .catch(() => {})
   }
 
+  const deleteModel = (model) => {
+    dispatch({ type: "loading" })
+    apiConnector
+      .api("DELETE", `/ore/${modelId}`)
+      .fetch()
+      .then((context) => {
+        route("/app/admin/ore/")
+      })
+      .catch(() => {})
+  }
+
   return (
     <div class="m-3 flex-grow-1">
       <Breadcrumb
         items={[
           { label: "Admin", href: "/app/admin" },
-          { label: "Method", href: "/app/admin/method" },
+          { label: "Ore", href: "/app/admin/ore" },
           { label: state.model?.id },
         ]}
       />
       <Spinner isReady={state.isReady}>
-        <MethodForm
-          ores={state.ores}
+        <OreForm
           model={state.model}
-          onSave={updateModel}
-        />
+          onSave={saveModel}
+          onDelete={deleteModel} />
       </Spinner>
     </div>
   )

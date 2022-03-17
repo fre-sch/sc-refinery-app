@@ -1,10 +1,9 @@
-import { debounceEffect } from "../../components/util"
-import AdminDataTable from "./_table"
-import useQueryState from "./_query"
-import Breadcrumb from "../../components/breadcrumb"
-import Pagination from "../../components/pagination"
-import { useAppContext } from "../../components/app"
-import { SpinnerOverlay } from "../../components/spinner"
+import { debounceEffect } from "../../../components/util"
+import AdminDataTable from "../_table"
+import useQueryState from "../_query"
+import Breadcrumb from "../../../components/breadcrumb"
+import { useAppContext } from "../../../components/app"
+import { route } from "preact-router"
 
 const columns = [
   {
@@ -83,14 +82,12 @@ export default (props) => {
         queryState={queryState}
         queryDispatch={queryDispatch}
         onRowClicked={(row) => route(`/app/admin/ore/${row.id}`)}
-      >
-        <SpinnerOverlay isReady={queryState.status != "loading"}/>
-      </AdminDataTable>
-      <Pagination
-        total={queryState.totalPages}
-        current={queryState.page}
-        onClick={(page) => queryDispatch("page", { page })}
       />
+      <div class="text-end">
+        <a href="/app/admin/ore/create" type="button" class="btn btn-primary">
+          Create
+        </a>
+      </div>
     </div>
   )
 }

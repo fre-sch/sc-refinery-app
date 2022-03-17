@@ -1,15 +1,18 @@
 import { Router } from 'preact-router'
 import Sidebar from "./_sidebar"
-import UserIndex from "./userIndex"
-import UserEdit from "./userEdit"
-import UserCreate from './userCreate'
-import StationIndex from "./stationIndex"
-import StationEdit from "./stationEdit"
-import StationCreate from "./stationCreate"
-import Method from "./method"
-import MethodEdit from "./methodEdit"
-import Ore from "./ore"
-import Mining_session from './mining_session'
+import UserIndex from "./user/index"
+import UserEdit from "./user/edit"
+import UserCreate from './user/create'
+import StationIndex from "./station/index"
+import StationEdit from "./station/edit"
+import StationCreate from "./station/create"
+import MethodIndex from "./method/index"
+import MethodEdit from "./method/edit"
+import MethodCreate from "./method/create"
+import OreIndex from "./ore/index"
+import OreEdit from "./ore/edit"
+import OreCreate from "./ore/create"
+import Mining_session from './mining_session/index'
 
 
 const Default = (props) => (
@@ -31,10 +34,13 @@ export default (props) => {
         <StationEdit path="/app/admin/station/:modelId" />
         <StationCreate path="/app/admin/station/create" />
 
-        <Method path="/app/admin/method" />
+        <MethodIndex path="/app/admin/method" />
         <MethodEdit path="/app/admin/method/:modelId" />
+        <MethodCreate path="/app/admin/method/create" />
 
-        <Ore path="/app/admin/ore" />
+        <OreIndex path="/app/admin/ore" />
+        <OreEdit path="/app/admin/ore/:modelId" />
+        <OreCreate path="/app/admin/ore/create" />
 
         <Mining_session path="/app/admin/mining_session" />
       </Router>

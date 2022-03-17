@@ -1,6 +1,6 @@
-import Breadcrumb from "../../components/breadcrumb"
-import { useAppContext } from "../../components/app"
-import UserForm from "./_userForm"
+import Breadcrumb from "../../../components/breadcrumb"
+import { useAppContext } from "../../../components/app"
+import UserForm from "./_form"
 
 export default (props) => {
   const { apiConnector } = useAppContext()

@@ -1,5 +1,5 @@
 import { Component } from "preact"
-import Input from "../../components/form/input"
+import Input from "../../../components/form/input"
 
 class Efficiencies extends Component {
   /**

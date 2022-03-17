@@ -1,4 +1,15 @@
-import { Sidebar, SidebarItem } from '../../components/sidebar'
+import { Link } from "preact-router/match"
+import { Icon } from "../../components/icon"
+import { Sidebar } from "../../components/sidebar"
+
+const SidebarItem = ({ label, href, icon }) => (
+  <li class="nav-item">
+    <Link href={href} class="nav-link" activeClassName="active">
+      <Icon cls={icon} />
+      {label}
+    </Link>
+  </li>
+)
 
 export default (props) => {
   return (

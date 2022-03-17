@@ -1,8 +1,8 @@
-import Breadcrumb from "../../components/breadcrumb"
-import Spinner from "../../components/spinner"
+import Breadcrumb from "../../../components/breadcrumb"
+import Spinner from "../../../components/spinner"
 import { useEffect, useReducer } from "preact/hooks"
-import { useAppContext } from "../../components/app"
-import UserForm from "./_userForm"
+import { useAppContext } from "../../../components/app"
+import UserForm from "./_form"
 
 const handleForm = (state, action) => {
   switch (action.type) {

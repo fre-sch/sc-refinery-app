@@ -1,6 +1,6 @@
-import { stopEvent } from "../../components/util"
+import { stopEvent } from "../../../components/util"
 import { useState, useEffect } from "preact/hooks"
-import Input from "../../components/form/input"
+import Input from "../../../components/form/input"
 
 const resources = [
   "user",

@@ -1,5 +1,5 @@
 import { Component, Fragment } from "preact"
-import Input from "../../components/form/input"
+import Input from "../../../components/form/input"
 import classnames from "classnames/dedupe"
 
 class ValuesPerOre extends Component {
@@ -107,7 +107,7 @@ export default class MethodForm extends Component {
     this.state = { ...this.initialState }
   }
 
-  render ({ ores, onSave }, state) {
+  render ({ ores, onSave, onDelete }, state) {
   return (
     <form action="javascript:void(0)">
       <div>
@@ -135,9 +135,11 @@ export default class MethodForm extends Component {
         />
       </div>
       <div class="d-flex justify-content-between mt-3">
-        <button type="submit" class="btn btn-danger">
-          Delete
-        </button>
+        {onDelete !== undefined && (
+          <button type="submit" class="btn btn-danger" onClick={() => onDelete(state)}>
+            Delete
+          </button>
+        )}
         <button
           type="submit"
           class="btn btn-primary"

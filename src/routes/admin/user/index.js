@@ -1,17 +1,18 @@
-import { debounceEffect } from "../../components/util"
-import AdminDataTable from "./_table"
-import useQueryState from "./_query"
-import Breadcrumb from "../../components/breadcrumb"
-import { useAppContext } from "../../components/app"
+import { debounceEffect } from "../../../components/util"
+import AdminDataTable from "../_table"
+import useQueryState from "../_query"
+import Breadcrumb from "../../../components/breadcrumb"
+import { useAppContext } from "../../../components/app"
 import { route } from "preact-router"
 
+const scopeMaxLength = 20
 const columns = [
   {
     header: {
       title: "id",
     },
     body: {
-      value: "id",
+      value: "id"
     },
     width: 0.5,
     sortable: "id",
@@ -21,11 +22,33 @@ const columns = [
       title: "name",
     },
     body: {
-      value: "name",
+      value: "name"
     },
-    width: 6,
+    width: 4,
     filterable: "name",
     sortable: "name",
+  },
+  {
+    header: {
+      title: "mail",
+    },
+    body: {
+      value: "mail"
+    },
+    width: 6,
+    filterable: "mail",
+    sortable: "mail",
+  },
+  {
+    header: {
+      title: "scopes",
+    },
+    body: {
+      view: (row) => (
+        <td class="text-ellipsis">{row.scopes.join(", ")}</td>
+      ),
+    },
+    width: 4,
   },
   {
     header: {
@@ -34,7 +57,7 @@ const columns = [
     body: {
       value: "created",
     },
-    width: 2,
+    width: 4,
     sortable: "created",
   },
   {
@@ -44,7 +67,7 @@ const columns = [
     body: {
       value: "updated",
     },
-    width: 2,
+    width: 4,
     sortable: "updated",
   },
 ]
@@ -56,7 +79,7 @@ export default (props) => {
   debounceEffect(
     () => {
       apiConnector
-        .api("GET", "/method/?" + queryState.queryParams)
+        .api("GET", "/user/?" + queryState.queryParams)
         .fetch()
         .then((result) => result.json())
         .then((context) => {
@@ -71,17 +94,19 @@ export default (props) => {
   return (
     <div class="m-3 flex-grow-1">
       <Breadcrumb
-        items={[
-          { label: "Admin", href: "/app/admin" },
-          { label: "Method", href: "/app/admin/method" },
-        ]}
+        items={[{ label: "Admin", href: "/app/admin" }, { label: "User" }]}
       />
       <AdminDataTable
         columns={columns}
         queryState={queryState}
         queryDispatch={queryDispatch}
-        onRowClicked={(row) => route(`/app/admin/method/${row.id}`)}
+        onRowClicked={(row) => route(`/app/admin/user/${row.id}`)}
       />
+      <div class="text-end">
+        <a href="/app/admin/user/create" type="button" class="btn btn-primary">
+          Create
+        </a>
+      </div>
     </div>
   )
 }
