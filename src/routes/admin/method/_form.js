@@ -108,48 +108,47 @@ export default class MethodForm extends Component {
   }
 
   render ({ ores, onSave, onDelete }, state) {
-  return (
-    <form action="javascript:void(0)">
-      <div>
-        <Input
-          label="Method Name"
-          id="method-name"
-          type="text"
-          placeholder="method name"
-          value={state.name}
-          onChange={(e) => this.setState({ name: e.target.value })}
-          css={{ main: "mb-4" }}
-        />
-      </div>
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-2">Ore</div>
-          <div class="col">Efficiency</div>
-          <div class="col">Cost per Unit</div>
-          <div class="col">Duration per Unit</div>
+    return (
+      <form action="javascript:void(0)">
+        <div>
+          <Input
+            label={translate("Method Name")}
+            id="method-name"
+            type="text"
+            placeholder={translate("method name")}
+            value={state.name}
+            onChange={(e) => this.setState({ name: e.target.value })}
+            css={{ main: "mb-4" }}
+          />
         </div>
-        <ValuesPerOre
-          ores={ores}
-          model={state.ores}
-          onChange={(ores) => this.setState({ ores })}
-        />
-      </div>
-      <div class="d-flex justify-content-between mt-3">
-        {onDelete !== undefined && (
-          <button type="submit" class="btn btn-danger" onClick={() => onDelete(state)}>
-            Delete
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-2">{translate("Ore")}</div>
+            <div class="col">{translate("Efficiency")}</div>
+            <div class="col">{translate("Cost per Unit")}</div>
+            <div class="col">{translate("Duration per Unit")}</div>
+          </div>
+          <ValuesPerOre
+            ores={ores}
+            model={state.ores}
+            onChange={(ores) => this.setState({ ores })}
+          />
+        </div>
+        <div class="d-flex justify-content-between mt-3">
+          {onDelete !== undefined && (
+            <button type="submit" class="btn btn-danger" onClick={() => onDelete(state)}>
+              {translate("Delete")}
+            </button>
+          )}
+          <button
+            type="submit"
+            class="btn btn-primary"
+            onClick={() => onSave(state)}
+          >
+            {translate("Save")}
           </button>
-        )}
-        <button
-          type="submit"
-          class="btn btn-primary"
-          onClick={() => onSave(state)}
-        >
-          Save
-        </button>
-      </div>
-    </form>
-  )
-}
-
+        </div>
+      </form>
+    )
+  }
 }
