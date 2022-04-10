@@ -88,3 +88,6 @@ export const filterableToQuery = (value) =>
     .filter((key) => value[key] !== null && value[key] !== undefined)
     .map((key) => `${key}:${value[key]}`)
     .join(";")
+
+export const translate = (value) => value 
+  
