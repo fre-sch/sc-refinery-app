@@ -88,7 +88,7 @@ export default (props) => {
           type="button"
           class="btn btn-primary"
         >
-          Create
+           {translate("Create")}
         </a>
       </div>
     </div>
