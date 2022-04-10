@@ -75,10 +75,10 @@ export default class StationForm extends Component {
       <form action="javascript:void(0)">
         <div>
           <Input
-            label="Station Name"
+            label={translate("Station Name")}
             id="station-name"
             type="text"
-            placeholder="station name"
+            placeholder={translate("station name")}
             value={state.name}
             onInput={(e) => this.setState({ name: e.target.value })}
             css={{ main: "mb-4" }}
@@ -86,8 +86,8 @@ export default class StationForm extends Component {
         </div>
         <div class="container-fluid">
           <div class="row mb-2">
-            <div class="col-2">Ore</div>
-            <div class="col">Efficiency bonus</div>
+            <div class="col-2">{translate("Ore")}</div>
+            <div class="col">{translate("Efficiency bonus")}</div>
           </div>
           <Efficiencies
             ores={ores}
@@ -102,7 +102,7 @@ export default class StationForm extends Component {
               class="btn btn-danger"
               onClick={(ev) => onDelete(state.id)}
             >
-              Delete
+               {translate("Delete")}
             </button>
           )}
           {onSave !== undefined && (
@@ -111,7 +111,7 @@ export default class StationForm extends Component {
               class="btn btn-primary"
               onClick={(ev) => onSave(state)}
             >
-              Save
+               {translate("Save")}
             </button>
           )}
         </div>
