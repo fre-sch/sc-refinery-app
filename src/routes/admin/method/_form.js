@@ -76,7 +76,7 @@ class ValuesPerOre extends Component {
           css={{ main: { col: 1, "mb-3": 0 } }}
         />
         <Input
-          postfix="seconds"
+          postfix={translate("seconds")}
           type="number"
           min="0"
           id={`method-ore-duration-${ore.id}`}
