@@ -11,7 +11,7 @@ const SidebarItem = ({ label, href, icon }) => (
   </li>
 )
 
-export default (props) => {
+const AdminSidebar = () => {
   return (
     <Sidebar>
       <ul class="nav nav-pills flex-column scrollarea">
@@ -36,3 +36,5 @@ export default (props) => {
     </Sidebar>
   )
 }
+
+export default AdminSidebar

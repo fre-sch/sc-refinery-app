@@ -2,11 +2,15 @@ require("dotenv").config()
 const resolveEnvVars = require("resolve-env-vars")
 const { DefinePlugin } = require("webpack")
 
-export default function (config, env, helpers) {
-  config.output.publicPath = '/app/';
-  Object.assign(config.devServer, {
-    host: 'localhost'
+export default (config, env, helpers) => {
+  Object.assign(config.output, {
+    publicPath: '/app/'
   })
+
+  if (config.devServer)
+    Object.assign(config.devServer, {
+      host: 'localhost'
+    })
 
   const { stringified, raw } = resolveEnvVars("PREACT_APP_");
   config.plugins.push(new DefinePlugin(stringified));

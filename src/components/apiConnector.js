@@ -3,10 +3,12 @@ const trimEnd = (val, chars="\n\t\r ") => {
   return val.replace(regex, "")
 }
 
+
 const trimStart = (val, chars = "\n\t\r ") => {
   const regex = new RegExp(`^[${chars}]+`)
   return val.replace(regex, "")
 }
+
 
 const urlJoin = (base, ...append) => (
   [
@@ -19,6 +21,7 @@ const urlJoin = (base, ...append) => (
 const logFailedRequest = value => {
   console.log("unhandled failed request", value)
 }
+
 
 class ApiRequest {
   constructor(method, baseUrl, headers = {}, options = {}, onRequestFailed=null) {
@@ -88,11 +91,13 @@ class ApiRequest {
     })
 }
 
+
 class ApiRequestContext {
   constructor(response, request) {
     this.request = request
     this.response = response
   }
+
   json = () =>
     this.response.json()
       .then(json => {
@@ -100,6 +105,7 @@ class ApiRequestContext {
         return Promise.resolve(this)
       })
 }
+
 
 export default class ApiConnector {
   constructor (defaultHeaders = {}, defaultOptions = {}, onRequestFailed=null) {

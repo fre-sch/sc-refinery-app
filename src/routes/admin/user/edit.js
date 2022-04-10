@@ -17,7 +17,7 @@ const handleForm = (state, action) => {
   }
 }
 
-export default ({ modelId }) => {
+const AdminUserEdit = ({ modelId }) => {
   const { apiConnector } = useAppContext()
   const [state, dispatch] = useReducer(handleForm, {
     modelId,
@@ -65,3 +65,5 @@ export default ({ modelId }) => {
     </div>
   )
 }
+
+export default AdminUserEdit

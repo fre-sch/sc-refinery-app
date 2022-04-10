@@ -1,4 +1,4 @@
-import { h, Component, Fragment, createContext } from 'preact'
+import { createContext } from 'preact'
 import { useContext, useEffect } from 'preact/hooks'
 import { Router } from 'preact-router'
 
@@ -12,7 +12,7 @@ import { ModalLayer, handleModalActions } from "./modalLayer"
 import Navbar from "./navbar"
 import Admin from '../routes/admin';
 import ApiConnector from "./apiConnector"
-import { combineReducers, usvEncode, setCookie, getCookie, stopEvent } from "./util"
+import { combineReducers, setCookie, getCookie } from "./util"
 import { LoginForm } from "./loginForm"
 import { Notifications } from "./notifications"
 
@@ -48,9 +48,10 @@ const handleAppActions = (state, action) => {
     case "setCurrentScope":
       return { ...state, currentScope: action.scope }
 
-    case "notificationsToggle":
+    case "notificationsToggle": {
       const { notificationsShow } = state
-      return { ...state, notificationsShow: !notificationsShow}
+      return { ...state, notificationsShow: !notificationsShow }
+    }
 
     default: return state
   }

@@ -12,7 +12,7 @@ import MethodCreate from "./method/create"
 import OreIndex from "./ore/index"
 import OreEdit from "./ore/edit"
 import OreCreate from "./ore/create"
-import Mining_session from './mining_session/index'
+import MiningSession from './mining_session/index'
 
 
 const Default = (props) => (
@@ -42,7 +42,7 @@ export default (props) => {
         <OreEdit path="/app/admin/ore/:modelId" />
         <OreCreate path="/app/admin/ore/create" />
 
-        <Mining_session path="/app/admin/mining_session" />
+        <MiningSession path="/app/admin/mining_session" />
       </Router>
     </div>
   )

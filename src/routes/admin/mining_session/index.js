@@ -28,6 +28,54 @@ const columns = [
   },
   {
     header: {
+      title: "creator",
+      body: {
+        value: "creator.name",
+      },
+    },
+    filterable: "creator_name",
+    sortable: "creator_name",
+  },
+  {
+    header: {
+      title: "count_participants",
+    },
+    body: {
+      value: "count_participants",
+    },
+    width: 1,
+  },
+  {
+    header: {
+      title: "count_entries",
+    },
+    body: {
+      value: "count_entries",
+    },
+    width: 1,
+  },
+  {
+    header: {
+      title: "yield_scu",
+    },
+    body: {
+      value: "yield_scu",
+    },
+    sortable: "yield_scu",
+    width: 1,
+  },
+  {
+    header: {
+      title: "yield_uec",
+    },
+    body: {
+      value: "yield_uec",
+    },
+    sortable: "yield_uec",
+    width: 1,
+  },
+  {
+    header: {
       title: "created",
     },
     body: {
@@ -44,6 +92,16 @@ const columns = [
       value: "updated",
     },
     sortable: "updated",
+    width: 1,
+  },
+  {
+    header: {
+      title: "archived",
+    },
+    body: {
+      value: "archived",
+    },
+    sortable: "archived",
     width: 1,
   },
 ]

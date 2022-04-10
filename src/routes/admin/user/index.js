@@ -5,14 +5,16 @@ import Breadcrumb from "../../../components/breadcrumb"
 import { useAppContext } from "../../../components/app"
 import { route } from "preact-router"
 
-const scopeMaxLength = 20
+// TODO: what was I going to this for?
+// const scopeMaxLength = 20
+
 const columns = [
   {
     header: {
       title: "id",
     },
     body: {
-      value: "id"
+      value: "id",
     },
     width: 0.5,
     sortable: "id",
@@ -22,7 +24,7 @@ const columns = [
       title: "name",
     },
     body: {
-      value: "name"
+      value: "name",
     },
     width: 4,
     filterable: "name",
@@ -33,7 +35,7 @@ const columns = [
       title: "mail",
     },
     body: {
-      value: "mail"
+      value: "mail",
     },
     width: 6,
     filterable: "mail",
@@ -44,9 +46,7 @@ const columns = [
       title: "scopes",
     },
     body: {
-      view: (row) => (
-        <td class="text-ellipsis">{row.scopes.join(", ")}</td>
-      ),
+      view: (row) => <td class="text-ellipsis">{row.scopes.join(", ")}</td>,
     },
     width: 4,
   },
@@ -70,9 +70,19 @@ const columns = [
     width: 4,
     sortable: "updated",
   },
+  {
+    header: {
+      title: "last_login",
+    },
+    body: {
+      value: "last_login",
+    },
+    width: 4,
+    sortable: "last_login",
+  },
 ]
 
-export default (props) => {
+const AdminUserIndex = () => {
   const { apiConnector } = useAppContext()
   const [queryState, queryDispatch] = useQueryState()
 
@@ -110,3 +120,5 @@ export default (props) => {
     </div>
   )
 }
+
+export default AdminUserIndex
