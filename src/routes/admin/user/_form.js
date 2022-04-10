@@ -1,4 +1,4 @@
-import { stopEvent } from "../../../components/util"
+import { stopEvent, translate } from "../../../components/util"
 import { useState, useEffect } from "preact/hooks"
 import Input from "../../../components/form/input"
 
@@ -87,7 +87,7 @@ export default ({ model, onSave }) => {
     <form action="javascript:void(0)">
       <div>
         <Input
-          label="Email address"
+          label={translate("Email address")}
           type="text"
           class="form-control"
           id="user-mail"
@@ -96,7 +96,7 @@ export default ({ model, onSave }) => {
           onChange={(e) => updateModel({ mail: e.target.value })}
         />
         <Input
-          label="Name"
+          label={translate("Game Handel")}
           type="text"
           class="form-control"
           id="user-name"
@@ -104,14 +104,14 @@ export default ({ model, onSave }) => {
           onChange={(e) => updateModel({ name: e.target.value })}
         />
         <Input
-          label="Password"
+          label={translate("Password")}
           type="password"
           class="form-control"
           id="user-password"
           onChange={(e) => updateModel({ password: e.target.value })}
         />
         <Input
-          label="Password Confirmation"
+          label={translate("Password Confirmation")}
           type="password"
           class="form-control"
           id="user-password-confirm"
@@ -144,7 +144,7 @@ export default ({ model, onSave }) => {
           class="btn btn-primary"
           onClick={() => onSave(state.model)}
         >
-          Save
+          {translate("Save")}
         </button>
       </div>
     </form>

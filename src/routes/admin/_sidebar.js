@@ -1,6 +1,7 @@
 import { Link } from "preact-router/match"
 import { Icon } from "../../components/icon"
 import { Sidebar } from "../../components/sidebar"
+import { translate } from "../../components/util"
 
 const SidebarItem = ({ label, href, icon }) => (
   <li class="nav-item">
@@ -18,17 +19,17 @@ export default (props) => {
         <SidebarItem label="User" href="/app/admin/user" icon="person-fill" />
         <SidebarItem label="Ore" href="/app/admin/ore" icon="bucket-fill" />
         <SidebarItem
-          label="Station"
+          label= {translate("Station")}
           href="/app/admin/station"
           icon="geo-fill"
         />
         <SidebarItem
-          label="Method"
+          label= {translate("Method")}
           href="/app/admin/method"
           icon="funnel-fill"
         />
         <SidebarItem
-          label="MiningSession"
+          label={translate("MiningSession")}
           href="/app/admin/mining_session"
           icon="people-fill"
         />

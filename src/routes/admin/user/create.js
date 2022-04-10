@@ -1,6 +1,7 @@
 import Breadcrumb from "../../../components/breadcrumb"
 import { useAppContext } from "../../../components/app"
 import UserForm from "./_form"
+import { translate } from "../../../components/util"
 
 export default (props) => {
   const { apiConnector } = useAppContext()
@@ -29,9 +30,9 @@ export default (props) => {
     <div class="m-3 flex-grow-1">
       <Breadcrumb
         items={[
-          { label: "Admin", href: "/app/admin" },
-          { label: "User", href: "/app/admin/user" },
-          { label: "Create" },
+          { label: translate("Admin"), href: "/app/admin" },
+          { label: translate("User"), href: "/app/admin/user" },
+          { label: translate("Create") },
         ]}
       />
       <UserForm model={model} onSave={createModel} />

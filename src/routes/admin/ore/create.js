@@ -4,6 +4,7 @@ import { useEffect, useReducer } from "preact/hooks"
 import { useAppContext } from "../../../components/app"
 import OreForm from "./_form"
 import { route } from "preact-router"
+import { translate } from "../../../components/util"
 
 const handleForm = (state, action) => {
   switch (action.type) {
@@ -58,9 +59,9 @@ export default (props) => {
     <div class="m-3 flex-grow-1">
       <Breadcrumb
         items={[
-          { label: "Admin", href: "/app/admin" },
-          { label: "Ore", href: "/app/admin/ore" },
-          { label: "Create" },
+          { label: translate("Admin"), href: "/app/admin" },
+          { label: translate("Ore"), href: "/app/admin/ore" },
+          { label: translate("Create") },
         ]}
       />
       <Spinner isReady={state.isReady}>

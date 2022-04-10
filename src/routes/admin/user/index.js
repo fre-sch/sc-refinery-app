@@ -1,4 +1,4 @@
-import { debounceEffect } from "../../../components/util"
+import { debounceEffect, translate } from "../../../components/util"
 import AdminDataTable from "../_table"
 import useQueryState from "../_query"
 import Breadcrumb from "../../../components/breadcrumb"
@@ -94,7 +94,7 @@ export default (props) => {
   return (
     <div class="m-3 flex-grow-1">
       <Breadcrumb
-        items={[{ label: "Admin", href: "/app/admin" }, { label: "User" }]}
+        items={[{ label: translate("Admin"), href: "/app/admin" }, { label: "User" }]}
       />
       <AdminDataTable
         columns={columns}
@@ -104,7 +104,7 @@ export default (props) => {
       />
       <div class="text-end">
         <a href="/app/admin/user/create" type="button" class="btn btn-primary">
-          Create
+         {translate("Create")}
         </a>
       </div>
     </div>

@@ -3,6 +3,7 @@ import Spinner from "../../../components/spinner"
 import { useEffect, useReducer } from "preact/hooks"
 import { useAppContext } from "../../../components/app"
 import UserForm from "./_form"
+import { translate } from "../../../components/util"
 
 const handleForm = (state, action) => {
   switch (action.type) {
@@ -54,8 +55,8 @@ export default ({ modelId }) => {
     <div class="m-3 flex-grow-1">
       <Breadcrumb
         items={[
-          { label: "Admin", href: "/app/admin" },
-          { label: "User", href: "/app/admin/user" },
+          { label: translate("Admin"), href: "/app/admin" },
+          { label: translate("User"), href: "/app/admin/user" },
           { label: state.model?.id },
         ]}
       />
