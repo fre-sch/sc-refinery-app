@@ -1,6 +1,7 @@
 import { Component, Fragment } from "preact"
 import Input from "../../../components/form/input"
 import classnames from "classnames/dedupe"
+import { translate } from "../../../components/util"
 
 class ValuesPerOre extends Component {
   /**
