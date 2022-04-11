@@ -16,8 +16,8 @@ export default (props) => {
   return (
     <Sidebar>
       <ul class="nav nav-pills flex-column scrollarea">
-        <SidebarItem label="User" href="/app/admin/user" icon="person-fill" />
-        <SidebarItem label="Ore" href="/app/admin/ore" icon="bucket-fill" />
+        <SidebarItem label={translate("User")} href="/app/admin/user" icon="person-fill" />
+        <SidebarItem label={translate("Ore")} href="/app/admin/ore" icon="bucket-fill" />
         <SidebarItem
           label= {translate("Station")}
           href="/app/admin/station"
