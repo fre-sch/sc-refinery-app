@@ -21,7 +21,7 @@ export default class OreForm extends Component {
             label={translate("Ore Name")}
             id="ore-name"
             type="text"
-            placeholder={translate("ore name")}
+            placeholder={translate("Ore name")}
             value={state.name}
             onInput={(e) => this.setState({ name: e.target.value })}
             css={{ main: "mb-4" }}

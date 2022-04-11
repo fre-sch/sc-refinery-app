@@ -5,7 +5,7 @@ import { translate } from "../../components/util"
 
 const SidebarItem = ({ label, href, icon }) => (
   <li class="nav-item">
-    <Link href={href} class={translate("nav-link")} activeClassName={translate("active")}>
+    <Link href={href} class="nav-link" activeClassName="active">
       <Icon cls={icon} />
       {label}
     </Link>
@@ -29,7 +29,7 @@ export default (props) => {
           icon="funnel-fill"
         />
         <SidebarItem
-          label={translate("MiningSession")}
+          label={translate("Mining Session")}
           href="/app/admin/mining_session"
           icon="people-fill"
         />

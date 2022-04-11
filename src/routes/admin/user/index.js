@@ -94,7 +94,7 @@ export default (props) => {
   return (
     <div class="m-3 flex-grow-1">
       <Breadcrumb
-        items={[{ label: translate("Admin"), href: "/app/admin" }, { label: "User" }]}
+        items={[{ label: translate("Admin"), href: "/app/admin" }, { label: translate("User") }]}
       />
       <AdminDataTable
         columns={columns}
