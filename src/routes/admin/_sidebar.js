@@ -5,7 +5,7 @@ import { translate } from "../../components/util"
 
 const SidebarItem = ({ label, href, icon }) => (
   <li class="nav-item">
-    <Link href={href} class="nav-link" activeClassName="active">
+    <Link href={href} class={translate("nav-link")} activeClassName={translate("active")}>
       <Icon cls={icon} />
       {label}
     </Link>
