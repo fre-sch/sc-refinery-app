@@ -12,7 +12,7 @@ import { ModalLayer, handleModalActions } from "./modalLayer"
 import Navbar from "./navbar"
 import Admin from '../routes/admin';
 import ApiConnector from "./apiConnector"
-import { combineReducers, usvEncode, setCookie, getCookie, stopEvent, translate } from "./util"
+import { combineReducers, usvEncode, setCookie, getCookie, stopEvent} from "./util"
 import { LoginForm } from "./loginForm"
 import { Notifications } from "./notifications"
 
@@ -181,7 +181,7 @@ export default () => {
       ) : (
         <div class="d-flex flex-grow-1 align-content-center justify-content-center flex-column">
           <div class="flex-grow-0 m-auto">
-            <h1 class="mb-4">{translate("Login required")}</h1>
+            <h1 class="mb-4">"Login required"</h1>
             <LoginForm
               onCredentialsReady={(credentials) =>
                 dispatch({
