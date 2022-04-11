@@ -46,7 +46,7 @@ class ValuesPerOre extends Component {
       >
         <label class="col-form-label col-2">{ore.name}</label>
         <Input
-          postfix="%"
+          postfix={translate("%")}
           type="number"
           min="0"
           max="100"
@@ -62,7 +62,7 @@ class ValuesPerOre extends Component {
           css={{ main: { col: 1, "mb-3": 0 } }}
         />
         <Input
-          postfix="aUEC"
+          postfix={translate("aUEC")}
           type="number"
           min="0"
           id={`method-ore-cost-${ore.id}`}

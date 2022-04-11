@@ -1,4 +1,4 @@
-import { stopEvent } from "./util"
+import { stopEvent, translate } from "./util"
 import classnames from "classnames/dedupe"
 
 export default ({ total, current, onClick }) => (
@@ -30,7 +30,7 @@ export default ({ total, current, onClick }) => (
           href="#"
           onClick={stopEvent(() => onClick(current + 1))}
         >
-          Next
+          {translate("Next")}
         </a>
       </li>
     </ul>

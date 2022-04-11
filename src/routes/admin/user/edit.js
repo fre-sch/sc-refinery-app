@@ -3,7 +3,7 @@ import Spinner from "../../../components/spinner"
 import { useEffect, useReducer } from "preact/hooks"
 import { useAppContext } from "../../../components/app"
 import UserForm from "./_form"
-import { translate } from "../../../components/util"
+import { late } from "../../../components/util"
 
 const handleForm = (state, action) => {
   switch (action.type) {

@@ -24,7 +24,7 @@ export const LoginForm = ({ onCredentialsReady }) => {
     </div>
     <button type="submit" class="btn btn-primary"
             disabled={isEmpty(username) || isEmpty(password)}
-    >Login
+    >{translate("Login")}
     </button>
   </form>
 }

@@ -96,7 +96,7 @@ export default ({ model, onSave }) => {
           onChange={(e) => updateModel({ mail: e.target.value })}
         />
         <Input
-          label={translate("Game Handel")}
+          label={translate("Game Handle")}
           type="text"
           class="form-control"
           id="user-name"

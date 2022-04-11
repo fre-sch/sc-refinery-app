@@ -1,5 +1,5 @@
 import { Link } from "preact-router/match"
-import { stopEvent } from "./util"
+import { stopEvent, translate } from "./util"
 import { useAppContext } from "./app"
 
 const NavLink = (props) => (
@@ -37,7 +37,7 @@ export default (props) => {
                   dispatch({ type: "notificationsToggle" })
                 })}
               >
-                Notifications
+                {translate("Notifications")}
               </a>
             </li>
             <li class="nav-item">
