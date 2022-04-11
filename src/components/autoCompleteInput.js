@@ -1,6 +1,7 @@
 import { h, Component, Fragment } from "preact"
 import { useReducer, useEffect } from 'preact/hooks'
 import classnames from "classnames/dedupe"
+import { translate } from "./util"
 
 const autoCompleteHandler = (state, action) => {
   switch (action.type) {
@@ -43,7 +44,7 @@ const DropdownMenuWidget = ({ options, showMenu, dispatch }) => {
       onClick={onClickDispatch}
       type="button"
       class="btn btn-secondary dropdown-toggle dropdown-toggle-split">
-      <span class="visually-hidden">Toggle Dropdown</span>
+      <span class="visually-hidden">{translate("Toggle Dropdown")}</span>
     </button>
     <DropdownMenu
       options={options}
