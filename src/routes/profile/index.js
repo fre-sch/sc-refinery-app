@@ -1,5 +1,6 @@
 import { h } from 'preact';
 import {useEffect, useState} from "preact/hooks";
+import { translate } from '../../components/util';
 import style from './style.css';
 
 // Note: `user` comes from the URL, courtesy of our router
@@ -14,15 +15,15 @@ const Profile = ({ user }) => {
 
 	return (
 		<div class={style.profile}>
-			<h1>Profile: {user}</h1>
-			<p>This is the user profile for a user named { user }.</p>
+			<h1>{translate("Profile:")} {user}</h1>
+			<p>{translate("This is the user profile for a user named")} { user }.</p>
 
-			<div>Current time: {new Date(time).toLocaleString()}</div>
+			<div>{translate("Current time:")}  {new Date(time).toLocaleString()}</div>
 
 			<p>
-				<button onClick={() => setCount((count) => count + 1)}>Click Me</button>
+				<button onClick={() => setCount((count) => count + 1)}>{translate("Click Me")}</button>
 				{' '}
-				Clicked {count} times.
+				{translate("Clicked")} {count} {translate("times.")}
 			</p>
 		</div>
 	);
