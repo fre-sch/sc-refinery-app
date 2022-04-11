@@ -1,6 +1,6 @@
 import { Component } from "preact"
 import Input from "../../../components/form/input"
-
+import { translate } from "../../../components/util"
 
 export default class OreForm extends Component {
   /**
@@ -34,7 +34,7 @@ export default class OreForm extends Component {
               class="btn btn-danger"
               onClick={(ev) => onDelete(state.id)}
             >
-              {translate("Delete"]}
+              {translate("Delete")}
             </button>
           )}
           {onSave !== undefined && (
