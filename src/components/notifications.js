@@ -2,6 +2,7 @@ import { h, Component, Fragment } from "preact"
 import { useAppContext } from "./app"
 import Expire from "./expire"
 import Offcanvas from "./offcanvas"
+import { translate } from "./util"
 
 const NotificationToast = ({ status, statusText, created, body }) => (
   <div
@@ -13,7 +14,7 @@ const NotificationToast = ({ status, statusText, created, body }) => (
   >
     <div class="toast-header">
       <strong class="me-auto">
-        Request failed: {status} {statusText}
+        {translate("Request failed:")} {status} {statusText}
       </strong>
       <small>{created.fromNow()}</small>
       <button
@@ -33,7 +34,7 @@ const NotificationCard = ({ status, statusText, created, body }) => (
   <div class="card mb-2">
     <div class="card-body">
       <h5 class="card-title">
-        Request failed: {status} {statusText}
+        {translate("Request failed:")} {status} {statusText}
       </h5>
       <h6 class="card-subtitle mb-2 text-muted">{created.format()}</h6>
       <pre className="card-text">{body}</pre>

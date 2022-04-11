@@ -1,5 +1,6 @@
 import { useState } from "preact/hooks"
 import isEmpty from "lodash/isEmpty"
+import { translate } from "./util"
 
 
 export const LoginForm = ({ onCredentialsReady }) => {
@@ -7,7 +8,7 @@ export const LoginForm = ({ onCredentialsReady }) => {
   const [password, setPassword] = useState("")
   return <form onSubmit={() => onCredentialsReady({username, password})} action="javascript:">
     <div class="mb-3">
-      <label for="username" class="form-label">Email address</label>
+      <label for="username" class="form-label">{translate("Email address")}</label>
       <input type="text" class="form-control" id="username"
              placeholder="user@mail"
              value={username}
@@ -15,7 +16,7 @@ export const LoginForm = ({ onCredentialsReady }) => {
       />
     </div>
     <div class="mb-3">
-      <label for="password" class="form-label">Password</label>
+      <label for="password" class="form-label">{translate("Password")}</label>
       <input type="password" class="form-control" id="password"
              value={password}
              onInput={e => setPassword(e.target.value)}
