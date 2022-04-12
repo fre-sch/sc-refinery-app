@@ -1,0 +1,21 @@
+{
+    "Delete": "Borras",
+    "Save": "Guardar",
+    "Create":"Crear",
+    "User": "Usuario",
+    "Ore": "Mineral",
+    "Station": "Estación",
+    "Method": "Método",
+    "Method Name":"Nombre del método",
+    "Mining Session": "Sesión de minería",
+    "seconds":"Segundo",
+    "Efficiency": "Eficiencia",
+    "Cost per Unit": "Costes unitarios",
+    "Duration per Unit": "Duración por unidad",
+    "Ore Name": "Nombre del mineral",
+    "Efficiency bonus": "Bonificación por eficiencia",
+    "Game Handle": "Nombre del juego",
+    "Password": "Contraseña",
+    "Password Confirmation": "Repita la contraseña",
+    "Email address": "direccion de correo"
+  }

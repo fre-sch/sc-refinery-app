@@ -1,0 +1,21 @@
+{
+ "Delete": "Удалить",
+ "Save": "Сохранить",
+ "Create":"Создать",
+ "User": "Пользователь",
+ "Ore": "Руда",
+ "Station": "Станция",
+ "Method": "Метод",
+ "Method Name":"Название метода", 
+ "Mining Session": "Пребывание в шахте",
+ "seconds":"Секунды",
+ "Efficiency": "Эффективность",
+ "Cost per Unit": "Стоимость за единицу",
+ "Duration per Unit": "Продолжительность за единицу",
+ "Ore Name": "Название руды",
+ "Efficiency bonus": "Бонус за эффективность",
+ "Game Handle": "Никнейм",
+ "Password": "Пароль",
+ "Password Confirmation": "Подтверждение пароля",
+ "Email address": "Адрес электронной почты"
+}
