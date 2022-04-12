@@ -1,4 +1,7 @@
-const trimEnd = (val, chars="\n\t\r ") => {
+import constants from "./constants"
+
+
+const trimEnd = (val, chars = "\n\t\r ") => {
   const regex = new RegExp(`[${chars}]+$`)
   return val.replace(regex, "")
 }
@@ -127,5 +130,5 @@ export default class ApiConnector {
   }
 
   api = (method, url, options) =>
-    this.request(method, process.env.PREACT_APP_API_URL, url, options)
+    this.request(method, constants.APIURL, url, options)
 }

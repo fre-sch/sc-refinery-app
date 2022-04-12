@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "preact build --no-esm",
+    "build": "preact build --no-esm --no-prerender",
     "serve": "sirv build --port 8080 --cors --single",
     "dev": "preact watch -p 8081",
     "lint": "eslint src",
@@ -20,6 +20,7 @@
         "error",
         "always"
       ],
+      "react-hooks/rules-of-hooks": "off",
       "react-hooks/exhaustive-deps": "off",
       "prefer-template": "off"
     }

@@ -1,8 +1,10 @@
-import { debounceEffect } from "../../../components/util"
+import { debounceEffect } from "../../../util"
 import AdminDataTable from "../_table"
 import useQueryState from "../_query"
 import Breadcrumb from "../../../components/breadcrumb"
 import { useAppContext } from "../../../components/app"
+import constants from "../../../constants"
+import { route } from "preact-router"
 
 const columns = [
   {
@@ -106,7 +108,7 @@ const columns = [
   },
 ]
 
-export default (props) => {
+const AdminMiningSessionIndex = () => {
   const { apiConnector } = useAppContext()
   const [queryState, queryDispatch] = useQueryState()
 
@@ -130,16 +132,18 @@ export default (props) => {
     <div class="m-3 flex-grow-1">
       <Breadcrumb
         items={[
-          { label: "Admin", href: "/app/admin" },
-          { label: "Mining Session", href: "/app/admin/mining_session" },
+          { label: "Admin", href: constants.BASEURL + "/admin" },
+          { label: "Mining Session", href: constants.BASEURL + "/admin/mining_session" },
         ]}
       />
       <AdminDataTable
         columns={columns}
         queryState={queryState}
         queryDispatch={queryDispatch}
-        onRowClicked={(row) => route(`/app/admin/mining_session/${row.id}`)}
+        onRowClicked={(row) => route(`${constants.BASEURL}/admin/mining_session/${row.id}`)}
       />
     </div>
   )
 }
+
+export default AdminMiningSessionIndex

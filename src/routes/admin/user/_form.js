@@ -1,4 +1,4 @@
-import { stopEvent } from "../../../components/util"
+import { stopEvent } from "../../../util"
 import { useState, useEffect } from "preact/hooks"
 import Input from "../../../components/form/input"
 

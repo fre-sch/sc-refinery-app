@@ -1,9 +1,10 @@
-import { debounceEffect } from "../../../components/util"
+import { debounceEffect } from "../../../util"
 import AdminDataTable from "../_table"
 import useQueryState from "../_query"
 import Breadcrumb from "../../../components/breadcrumb"
 import { useAppContext } from "../../../components/app"
 import { route } from "preact-router"
+import constants from "../../../constants"
 
 // TODO: what was I going to this for?
 // const scopeMaxLength = 20
@@ -104,16 +105,19 @@ const AdminUserIndex = () => {
   return (
     <div class="m-3 flex-grow-1">
       <Breadcrumb
-        items={[{ label: "Admin", href: "/app/admin" }, { label: "User" }]}
+        items={[
+          { label: "Admin", href: constants.BASEURL + "/admin" },
+          { label: "User" }
+        ]}
       />
       <AdminDataTable
         columns={columns}
         queryState={queryState}
         queryDispatch={queryDispatch}
-        onRowClicked={(row) => route(`/app/admin/user/${row.id}`)}
+        onRowClicked={(row) => route(`${constants.BASEURL}/admin/user/${row.id}`)}
       />
       <div class="text-end">
-        <a href="/app/admin/user/create" type="button" class="btn btn-primary">
+        <a href={constants.BASEURL + "/admin/user/create"} type="button" class="btn btn-primary">
           Create
         </a>
       </div>
