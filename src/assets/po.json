@@ -1,0 +1,21 @@
+{
+ "Delete": "Kasuj/ usuń",
+  "Save": "zapisz",
+  "Create":"stwórz",
+  "User": "urzytkownik",
+  "Ore": "ruda",
+  "Station": "stacja",
+  "Method": "metoda",
+  "Method Name":"nazwa metody",
+  "Mining Session": "sesja wydobycia ",
+  "seconds":"sekundy",
+  "Efficiency": "efektywność",
+  "Cost per Unit": "cena za jednostkę",
+  "Duration per Unit": "czas trwania na jednostkę",
+  "Ore Name": "nazwa rudy",
+  "Efficiency bonus": "Premia za wydajność",
+  "Game Handle": "imie postaci",
+  "Password": "hasło",
+  "Password Confirmation": "Potwierdzenie hasła",
+  "Email address": "adres Email"
+}
