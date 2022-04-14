@@ -18,6 +18,7 @@ import { LoginForm } from "./loginForm"
 import { Notifications } from "./notifications"
 
 
+
 const authFailed = ({ response }) => {
   return response.status === 401 || response.status === 403
 }
@@ -162,7 +163,7 @@ const App = () => {
       <Navbar />
       {state.login.status === "success" ? (
         <Router>
-          <div path={`${constants.BASEURL}/`}>HOME</div>
+          <Home path={`${constants.BASEURL}/`} />
           <Admin
               path={`${constants.BASEURL}/admin/:rest*`}
           />
@@ -170,7 +171,8 @@ const App = () => {
       ) : (
         <div class="d-flex flex-grow-1 align-content-center justify-content-center flex-column">
           <div class="flex-grow-0 m-auto">
-            <h1 class="mb-4">Login required</h1>
+           <h1 class="mb-4 text-center">Something is happening here..</h1>
+            <h1 class="mb-4 text-center">Login required</h1>
             <LoginForm
               onCredentialsReady={(credentials) =>
                 dispatch({
