@@ -16,7 +16,7 @@ import ApiConnector from "../apiConnector"
 import { combineReducers, setCookie, getCookie } from "../util"
 import { LoginForm } from "./loginForm"
 import { Notifications } from "./notifications"
-
+import Home from "../routes/home"
 
 
 const authFailed = ({ response }) => {
