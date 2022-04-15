@@ -12,7 +12,7 @@ const SidebarItem = ({ label, href, icon }) => (
   </li>
 )
 
-const userSidebar = () => {
+const HomeSidebar = () => {
   return (
     <Sidebar>
       <ul class="nav nav-pills flex-column scrollarea">
@@ -23,12 +23,12 @@ const userSidebar = () => {
         />
         <SidebarItem
           label="Mining Session"
-          href={constants.BASEURL + "/home/Plazhalter"}
+          href={constants.BASEURL + "/home/mining_session"}
           icon="bucket-fill"
         />
         <SidebarItem
           label="Outstanding Payments"
-          href={constants.BASEURL + "/home/mining_session/"}
+          href={constants.BASEURL + "/home/Outstanding_Payments/"}
           icon="bucket-fill"
         />
         <SidebarItem
@@ -36,9 +36,9 @@ const userSidebar = () => {
           href={constants.BASEURL + "/home/settings"}
           icon="bucket-fill"
         />
-      </ul>
+          </ul>
     </Sidebar>
   )
 }
 
-export default userSidebar
+export default HomeSidebar

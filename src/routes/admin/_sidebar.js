@@ -37,7 +37,7 @@ const AdminSidebar = () => {
           icon="funnel-fill"
         />
         <SidebarItem
-          label="MiningSession"
+          label="Mining Session"
           href={constants.BASEURL + "/admin/mining_session"}
           icon="people-fill"
         />

@@ -1,6 +1,6 @@
 import { Router } from 'preact-router'
 import constants from "../../constants"
-import Sidebar from "./_sidebar"
+import  Sidebar  from "./_sidebar"
 import MiningSession from './mining_session/index'
 
 
@@ -14,7 +14,7 @@ const homeIndex = () => {
       <Sidebar />
       <Router>
         <Default path={constants.BASEURL + "/home"} />
-
+        <MiningSession path={constants.BASEURL + "/home/settings"} />
         <MiningSession path={constants.BASEURL + "/home/mining_session"} />
       </Router>
     </div>
