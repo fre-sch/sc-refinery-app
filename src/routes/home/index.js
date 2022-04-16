@@ -1,24 +1,25 @@
 import { Router } from 'preact-router'
 import constants from "../../constants"
+import UserFriends from './friends'
 import  Sidebar  from "./_sidebar"
-import MiningSession from './mining_session/index'
-
+import Mining_Session_User from "./mining_session_user"
 
 const Default = () => (
   <div class="p-3">Welcome</div>
 )
 
-const homeIndex = () => {
+const HomeIndex = () => {
   return (
     <div class="d-flex flex-grow-1">
       <Sidebar />
       <Router>
         <Default path={constants.BASEURL + "/home"} />
-        <MiningSession path={constants.BASEURL + "/home/settings"} />
-        <MiningSession path={constants.BASEURL + "/home/mining_session"} />
+        <UserFriends path={constants.BASEURL + "/home/friends"} />
+        <Mining_Session_User path={constants.BASEURL + "/home/mining_session_user"} />
+        
       </Router>
     </div>
   )
 }
 
-export default homeIndex
+export default HomeIndex

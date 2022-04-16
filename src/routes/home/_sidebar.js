@@ -18,12 +18,12 @@ const HomeSidebar = () => {
       <ul class="nav nav-pills flex-column scrollarea">
         <SidebarItem
           label="Friends"
-          href={constants.BASEURL + "/home"}
+          href={constants.BASEURL + "/home/friends"}
           icon="person-fill"
         />
         <SidebarItem
           label="Mining Session"
-          href={constants.BASEURL + "/home/mining_session"}
+          href={constants.BASEURL + "/home/mining_session_user"}
           icon="bucket-fill"
         />
         <SidebarItem
@@ -36,7 +36,7 @@ const HomeSidebar = () => {
           href={constants.BASEURL + "/home/settings"}
           icon="bucket-fill"
         />
-          </ul>
+      </ul>
     </Sidebar>
   )
 }
