@@ -8,7 +8,10 @@ th {
   vertical-align: top;
 }
 
-input[type=text], input[type=password],textarea {
+input[type=text],
+input[type=password],
+input[type=number],
+textarea {
     font-family: monospace;
 }
 
