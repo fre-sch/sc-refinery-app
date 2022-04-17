@@ -2,7 +2,7 @@ import {useEffect, useState} from "preact/hooks";
 import style from './style.css';
 
 // Note: `user` comes from the URL, courtesy of our router
-const UserSettingsIndex = ({ user }) => {
+const usersettingsindex = ({ user }) => {
 	const [time, setTime] = useState(Date.now());
 	const [count, setCount] = useState(10);
 
@@ -27,4 +27,4 @@ const UserSettingsIndex = ({ user }) => {
 	);
 }
 
-export default UserSettingsIndex;
+export default usersettingsindex;

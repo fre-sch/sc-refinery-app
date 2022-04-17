@@ -1,9 +1,8 @@
-
 import {useEffect, useState} from "preact/hooks";
 import style from './style.css';
 
 // Note: `user` comes from the URL, courtesy of our router
-const Outstanding_Payments = ({ user }) => {
+const outstanding_payments = ({ user }) => {
 	const [time, setTime] = useState(Date.now());
 	const [count, setCount] = useState(10);
 
@@ -28,4 +27,4 @@ const Outstanding_Payments = ({ user }) => {
 	);
 }
 
-export default Outstanding_Payments;
+export default outstanding_payments;

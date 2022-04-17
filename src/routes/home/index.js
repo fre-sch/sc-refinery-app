@@ -14,9 +14,14 @@ const HomeIndex = () => {
       <Sidebar />
       <Router>
         <Default path={constants.BASEURL + "/home"} />
+
         <UserFriends path={constants.BASEURL + "/home/friends"} />
+
         <Mining_Session_User path={constants.BASEURL + "/home/mining_session_user"} />
-        
+
+
+  
+
       </Router>
     </div>
   )
