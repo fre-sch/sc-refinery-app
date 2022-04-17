@@ -31,7 +31,7 @@ const AdminMethodCreate = () => {
     model: {
       id: null,
       name: null,
-      ores: [],
+      efficiencies: [],
     },
     ores: null,
     isReady: false,
