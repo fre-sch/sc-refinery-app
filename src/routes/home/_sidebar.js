@@ -28,7 +28,7 @@ const HomeSidebar = () => {
         />
         <SidebarItem
           label="Outstanding Payments"
-          href={constants.BASEURL + "/home/Outstanding_Payments/"}
+          href={constants.BASEURL + "/home/outstanding_payments"}
           icon="bucket-fill"
         />
         <SidebarItem
