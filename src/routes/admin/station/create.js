@@ -35,7 +35,7 @@ const AdminStationCreate = () => {
     model: {
       id: null,
       name: null,
-      efficiency: []
+      efficiencies: []
     },
     ores: null,
     isReady: false,

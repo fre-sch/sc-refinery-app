@@ -52,7 +52,7 @@ class ValuesPerOre extends Component {
           max="100"
           step="0.01"
           id={`method-ore-efficiency-${ore.id}`}
-          value={Math.round(state[ore.id].efficiency * 100)}
+          value={Number(state[ore.id].efficiency * 100).toFixed(2)}
           onChange={(e) =>
             this.setValue({
               ore_id: ore.id,
@@ -131,13 +131,17 @@ export default class MethodForm extends Component {
         </div>
         <ValuesPerOre
           ores={ores}
-          model={state.ores}
-          onChange={(ores) => this.setState({ ores })}
+          model={state.efficiencies}
+          onChange={(efficiencies) => this.setState({ efficiencies })}
         />
       </div>
       <div class="d-flex justify-content-between mt-3">
         {onDelete !== undefined && (
-          <button type="submit" class="btn btn-danger" onClick={() => onDelete(state)}>
+          <button
+            type="submit"
+            class="btn btn-danger"
+            onClick={() => onDelete(state)}
+          >
             Delete
           </button>
         )}

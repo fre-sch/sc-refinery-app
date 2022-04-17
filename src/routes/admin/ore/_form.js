@@ -27,6 +27,15 @@ export default class OreForm extends Component {
             onInput={(e) => this.setState({ name: e.target.value })}
             css={{ main: "mb-4" }}
           />
+          <Input
+            label="Ore Sell Price"
+            id="ore-sell-price"
+            type="number"
+            min="0"
+            value={state.sell_price}
+            onInput={(e) => this.setState({ sell_price: parseInt(e.target.value, 10) })}
+            css={{ main: "mb-4" }}
+          />
         </div>
         <div class="d-flex justify-content-between mt-3">
           {onDelete !== undefined && (
