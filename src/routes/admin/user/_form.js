@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { stopEvent, translate } from "../../../components/util"
+=======
+import { stopEvent } from "../../../util"
+>>>>>>> upstream/develop
 import { useState, useEffect } from "preact/hooks"
 import Input from "../../../components/form/input"
 
@@ -35,29 +39,27 @@ const UserPermsForm = ({ scopes = [], onChange }) => {
             class="form-check-input"
             type="checkbox"
             value={state.indexOf("*") > -1}
-            id={`user-scope-admin`}
+            id="user-scope-admin"
             checked={state.indexOf("*") > -1}
-            onChange={stopEvent((_) => toggleScope("*"))}
+            onChange={stopEvent(() => toggleScope("*"))}
           />
           <label class="form-check-label" for={`user-scope-admin`}>
             Admin
           </label>
         </div>
       </div>
-      {resources.map((resource) => (
-        <div>
+      {resources.map((resource, resource_key) => (
+        <div key={`${resource}${resource_key}`}>
           <strong>{resource}</strong>
-          {actions.map((action) => (
-            <div class="form-check">
+          {actions.map((action, action_key) => (
+            <div class="form-check" key={`${action}${action_key}`}>
               <input
                 class="form-check-input"
                 type="checkbox"
                 value={state.indexOf(`${resource}.${action}`) > -1}
                 id={`user-scope-${resource}-${action}`}
                 checked={state.indexOf(`${resource}.${action}`) > -1}
-                onChange={stopEvent((_) =>
-                  toggleScope(`${resource}.${action}`)
-                )}
+                onChange={stopEvent(() => toggleScope(`${resource}.${action}`))}
                 disabled={hasStar}
               />
               <label
@@ -74,13 +76,15 @@ const UserPermsForm = ({ scopes = [], onChange }) => {
   )
 }
 
-export default ({ model, onSave }) => {
+const UserForm = ({ model, onSave }) => {
   const [state, setState] = useState({
     model
   })
   const updateModel = (data) => setState({
-    ...state,
-    model: {...state.model, ...data}
+    model: {
+      ...state.model,
+      ...data
+    }
   })
 
   return (
@@ -93,7 +97,10 @@ export default ({ model, onSave }) => {
           id="user-mail"
           placeholder="user@mail"
           value={state.model.mail}
-          onChange={(e) => updateModel({ mail: e.target.value })}
+          onChange={(e) => {
+            console.info("input prop onChange")
+            updateModel({ mail: e.target.value })
+          }}
         />
         <Input
           label={translate("Game Handle")}
@@ -150,3 +157,5 @@ export default ({ model, onSave }) => {
     </form>
   )
 }
+
+export default UserForm

@@ -70,24 +70,64 @@ export const setCookie = (name, value, options = {}) => {
 
 export const getCookie = (name) => {
   let matches = document.cookie.match(new RegExp(
+    // eslint-disable-next-line no-useless-escape
     "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
   ));
   return matches ? decodeURIComponent(matches[1]) : null;
 }
 
 
+/**
+ * Take object with keys being column names and values being "asc" or "desc"
+ * and create a string where keys and values are separated by ":" with each
+ * key/value pair separated by ";".
+ *
+ * Example:
+ *
+ *   sortableToQuery({"name": "asc", "age": "desc"}) => "name:asc;age:desc"
+ */
 export const sortableToQuery = (value) =>
   Object.keys(value)
     .filter(key => value[key] !== null)
     .map(key => `${key}:${value[key] ? "asc" : "desc"}`)
     .join(";")
 
-
+/**
+ * Take object with names and values and create a string where keys and values
+ * are separated by ":" with each key/value pair separated by ";".
+ *
+ * Example:
+ *
+ *   filterableToQuery({"name": "Albert", "age": "25"}) => "name:Albert;age:25"
+ */
 export const filterableToQuery = (value) =>
   Object.keys(value)
     .filter((key) => value[key] !== null && value[key] !== undefined)
     .map((key) => `${key}:${value[key]}`)
     .join(";")
 
+<<<<<<< HEAD:src/components/util.js
 export const translate = (value) => value 
   
+=======
+
+/**
+ * Take optional string and return with postfix appended if not empty.
+ */
+export const postfix = (str, postfix) => (str ? `${str}${postfix}` : "")
+
+/**
+ * Take seconds and return in format "(days)d (hours)h (minutes)m (seconds)s"
+ *
+ * Example:
+ *  formatDuration(3600) => "1h 0m 0s"
+ */
+export const formatDuration = (value) => {
+  const days = Math.floor(value / (3600 * 24))
+  const hours = Math.floor((value % (3600 * 24)) / 3600)
+  const minutes = Math.floor((value % 3600) / 60)
+  const seconds = Math.floor(value % 60)
+
+  return `${postfix(days, "d ")}${postfix(hours, "h ")}${postfix(minutes, "m ")}${postfix(seconds, "s")}`
+}
+>>>>>>> upstream/develop:src/util.js

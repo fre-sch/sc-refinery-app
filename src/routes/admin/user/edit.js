@@ -3,7 +3,12 @@ import Spinner from "../../../components/spinner"
 import { useEffect, useReducer } from "preact/hooks"
 import { useAppContext } from "../../../components/app"
 import UserForm from "./_form"
+<<<<<<< HEAD
 import { late } from "../../../components/util"
+=======
+import constants from "../../../constants"
+
+>>>>>>> upstream/develop
 
 const handleForm = (state, action) => {
   switch (action.type) {
@@ -18,7 +23,7 @@ const handleForm = (state, action) => {
   }
 }
 
-export default ({ modelId }) => {
+const AdminUserEdit = ({ modelId }) => {
   const { apiConnector } = useAppContext()
   const [state, dispatch] = useReducer(handleForm, {
     modelId,
@@ -51,18 +56,40 @@ export default ({ modelId }) => {
       .catch(() => {})
   }
 
+  const deleteModel = (model) => {
+    dispatch({ type: "loading" })
+    apiConnector
+      .api("DELETE", `/user/${model.id}`)
+      .fetch()
+      .then(() => {
+        route(constants.BASEURL + "/admin/user/")
+      })
+      .catch(() => {})
+  }
+
   return (
     <div class="m-3 flex-grow-1">
       <Breadcrumb
         items={[
+<<<<<<< HEAD
           { label: translate("Admin"), href: "/app/admin" },
           { label: translate("User"), href: "/app/admin/user" },
+=======
+          { label: "Admin", href: constants.BASEURL + "/admin" },
+          { label: "User", href: constants.BASEURL + "/admin/user" },
+>>>>>>> upstream/develop
           { label: state.model?.id },
         ]}
       />
       <Spinner isReady={state.isReady}>
-        <UserForm model={state.model} onSave={updateModel} />
+        <UserForm
+          model={state.model}
+          onSave={updateModel}
+          onDelete={deleteModel}
+        />
       </Spinner>
     </div>
   )
 }
+
+export default AdminUserEdit

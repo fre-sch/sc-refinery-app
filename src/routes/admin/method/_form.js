@@ -1,4 +1,4 @@
-import { Component, Fragment } from "preact"
+import { Component } from "preact"
 import Input from "../../../components/form/input"
 import classnames from "classnames/dedupe"
 import { translate } from "../../../components/util"
@@ -39,6 +39,7 @@ class ValuesPerOre extends Component {
   render({ ores }, state) {
     return ores.map((ore, index) => (
       <div
+        key={ore.id}
         id={`method-ore-item-${ore.id}`}
         class={classnames("row border-top pt-2 pb-2", {
           "bg-light": index % 2 == 0,
@@ -52,7 +53,7 @@ class ValuesPerOre extends Component {
           max="100"
           step="0.01"
           id={`method-ore-efficiency-${ore.id}`}
-          value={Math.round(state[ore.id].efficiency * 100)}
+          value={Number(state[ore.id].efficiency * 100).toFixed(2)}
           onChange={(e) =>
             this.setValue({
               ore_id: ore.id,
@@ -70,7 +71,7 @@ class ValuesPerOre extends Component {
           onChange={(e) =>
             this.setValue({
               ore_id: ore.id,
-              cost: parseInt(e.target.value),
+              cost: parseInt(e.target.value, 10),
             })
           }
           css={{ main: { col: 1, "mb-3": 0 } }}
@@ -84,7 +85,7 @@ class ValuesPerOre extends Component {
           onChange={(e) =>
             this.setValue({
               ore_id: ore.id,
-              duration: parseInt(e.target.value),
+              duration: parseInt(e.target.value, 10),
             })
           }
           css={{ main: { col: 1, "mb-3": 0 } }}
@@ -122,6 +123,7 @@ export default class MethodForm extends Component {
             css={{ main: "mb-4" }}
           />
         </div>
+<<<<<<< HEAD
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-2">{translate("Ore")}</div>
@@ -147,6 +149,22 @@ export default class MethodForm extends Component {
             onClick={() => onSave(state)}
           >
             {translate("Save")}
+=======
+        <ValuesPerOre
+          ores={ores}
+          model={state.efficiencies}
+          onChange={(efficiencies) => this.setState({ efficiencies })}
+        />
+      </div>
+      <div class="d-flex justify-content-between mt-3">
+        {onDelete !== undefined && (
+          <button
+            type="submit"
+            class="btn btn-danger"
+            onClick={() => onDelete(state)}
+          >
+            Delete
+>>>>>>> upstream/develop
           </button>
         </div>
       </form>

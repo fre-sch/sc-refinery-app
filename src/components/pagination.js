@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 import { stopEvent, translate } from "./util"
+=======
+import { stopEvent } from "../util"
+>>>>>>> upstream/develop
 import classnames from "classnames/dedupe"
 
-export default ({ total, current, onClick }) => (
+const Pagination = ({ total, current, onClick }) => (
   <nav>
     <ul class="pagination pagination-sm justify-content-center">
       <li class={classnames("page-item", { disabled: current == 0 })}>
@@ -14,7 +18,7 @@ export default ({ total, current, onClick }) => (
         </a>
       </li>
       {Array(total).fill().map((_, page) => (
-        <li class={classnames("page-item", { active: page == current })}>
+        <li key={page} class={classnames("page-item", { active: page == current })}>
           <a
             class="page-link"
             href="#"
@@ -36,3 +40,5 @@ export default ({ total, current, onClick }) => (
     </ul>
   </nav>
 )
+
+export default Pagination

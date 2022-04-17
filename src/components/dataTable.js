@@ -1,8 +1,9 @@
 import classnames from "classnames/dedupe"
+import get from "lodash/get"
 
 const _defaultRowClicked = () => { }
 
-export default ({
+const DataTable = ({
   columns,
   items,
   view = defaultTableView(),
@@ -23,6 +24,8 @@ export default ({
     {children}
   </div>
 )
+
+export default DataTable
 
 const viewHeaderColumn = (column) => {
   const { header } = column
@@ -47,7 +50,7 @@ const viewBodyColumn = (column, item) => {
   if (typeof value === "function") {
     return <td class={classnames(body.classnames)}>{value.call(column, item)}</td>
   }
-  return <td class={classnames(body.classnames)}>{item[value]}</td>
+  return <td class={classnames(body.classnames)}>{get(item, value)}</td>
 }
 
 const defaultTableView = () => ({
@@ -73,7 +76,7 @@ const ColGroup = ({ columns }) => {
   return (
     <colgroup>
       {fractions.map(
-        fract => <col style={{ width: `${fract}%` }} />
+        (fract, index) => <col key={index} style={{ width: `${fract}%` }} />
       )}
     </colgroup>
   )
@@ -89,8 +92,8 @@ const TableHeader = ({ columns, view }) => (
 
 const TableBody = ({ columns, items, view, onRowClicked }) => (
   <tbody>
-    {items.map(item =>
-      <tr onDblClick={ev => onRowClicked(item)}>{
+    {items.map((item, index) =>
+      <tr key={index} onDblClick={() => onRowClicked(item)}>{
         columns.map(col => view.bodyColumn(col, item))
       }</tr>
     )}

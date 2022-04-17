@@ -1,10 +1,14 @@
 import Breadcrumb from "../../../components/breadcrumb"
 import Spinner from "../../../components/spinner"
-import { useEffect, useReducer } from "preact/hooks"
+import { useReducer } from "preact/hooks"
 import { useAppContext } from "../../../components/app"
 import OreForm from "./_form"
 import { route } from "preact-router"
+<<<<<<< HEAD
 import { translate } from "../../../components/util"
+=======
+import constants from "../../../constants"
+>>>>>>> upstream/develop
 
 const handleForm = (state, action) => {
   switch (action.type) {
@@ -21,7 +25,7 @@ const handleForm = (state, action) => {
     }
     case "loadFailed": {
       const { response } = action
-      validation = response.invalid || []
+      const validation = response.invalid || []
       return { ...state, validation, isReady: true }
     }
     default:
@@ -29,7 +33,7 @@ const handleForm = (state, action) => {
   }
 }
 
-export default (props) => {
+const AdminOreCreate = () => {
   const { apiConnector } = useAppContext()
   const [state, dispatch] = useReducer(handleForm, {
     model: null,
@@ -45,7 +49,7 @@ export default (props) => {
       .fetch()
       .then((result) => result.json())
       .then((context) => {
-        route(`/app/admin/ore/${context.json.id}`)
+        route(`${constants.BASEURL}/admin/ore/${context.json.id}`)
       })
       .catch((context) => {
         dispatch({
@@ -59,16 +63,22 @@ export default (props) => {
     <div class="m-3 flex-grow-1">
       <Breadcrumb
         items={[
+<<<<<<< HEAD
           { label: translate("Admin"), href: "/app/admin" },
           { label: translate("Ore"), href: "/app/admin/ore" },
           { label: translate("Create") },
+=======
+          { label: "Admin", href: constants.BASEURL + "/admin" },
+          { label: "Ore", href: constants.BASEURL + "/admin/ore" },
+          { label: "Create" },
+>>>>>>> upstream/develop
         ]}
       />
       <Spinner isReady={state.isReady}>
-        <OreForm
-          model={state.model}
-          onSave={saveModel} />
+        <OreForm model={state.model} onSave={saveModel} />
       </Spinner>
     </div>
   )
 }
+
+export default AdminOreCreate

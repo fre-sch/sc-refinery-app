@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 import { debounceEffect, translate } from "../../../components/util"
+=======
+import { debounceEffect } from "../../../util"
+>>>>>>> upstream/develop
 import AdminDataTable from "../_table"
 import useQueryState from "../_query"
 import Breadcrumb from "../../../components/breadcrumb"
 import { useAppContext } from "../../../components/app"
+import constants from "../../../constants"
+import { route } from "preact-router"
 
 const columns = [
   {
@@ -24,7 +30,56 @@ const columns = [
     },
     filterable: "name",
     sortable: "name",
-    width: 4,
+    width: 2,
+  },
+  {
+    header: {
+      title: "creator",
+    },
+    body: {
+      value: "creator.name",
+    },
+    filterable: "creator_name",
+    sortable: "creator_name",
+    width: 2,
+  },
+  {
+    header: {
+      title: "users_invited_count",
+    },
+    body: {
+      value: "users_invited_count",
+    },
+    width: 1,
+  },
+  {
+    header: {
+      title: "entries_count",
+    },
+    body: {
+      value: "entries_count",
+    },
+    width: 1,
+  },
+  {
+    header: {
+      title: "yield_scu",
+    },
+    body: {
+      value: "yield_scu",
+    },
+    sortable: "yield_scu",
+    width: 1,
+  },
+  {
+    header: {
+      title: "yield_uec",
+    },
+    body: {
+      value: "yield_uec",
+    },
+    sortable: "yield_uec",
+    width: 1,
   },
   {
     header: {
@@ -46,9 +101,19 @@ const columns = [
     sortable: "updated",
     width: 1,
   },
+  {
+    header: {
+      title: "archived",
+    },
+    body: {
+      value: "archived",
+    },
+    sortable: "archived",
+    width: 1,
+  },
 ]
 
-export default (props) => {
+const AdminMiningSessionIndex = () => {
   const { apiConnector } = useAppContext()
   const [queryState, queryDispatch] = useQueryState()
 
@@ -72,16 +137,23 @@ export default (props) => {
     <div class="m-3 flex-grow-1">
       <Breadcrumb
         items={[
+<<<<<<< HEAD
           { label: translate("Admin"), href: "/app/admin" },
           { label: translate("Mining Session"), href: "/app/admin/mining_session" },
+=======
+          { label: "Admin", href: constants.BASEURL + "/admin" },
+          { label: "Mining Session", href: constants.BASEURL + "/admin/mining_session" },
+>>>>>>> upstream/develop
         ]}
       />
       <AdminDataTable
         columns={columns}
         queryState={queryState}
         queryDispatch={queryDispatch}
-        onRowClicked={(row) => route(`/app/admin/mining_session/${row.id}`)}
+        onRowClicked={(row) => route(`${constants.BASEURL}/admin/mining_session/${row.id}/entry`)}
       />
     </div>
   )
 }
+
+export default AdminMiningSessionIndex

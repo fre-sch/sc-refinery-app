@@ -1,12 +1,17 @@
-const trimEnd = (val, chars="\n\t\r ") => {
+import constants from "./constants"
+
+
+const trimEnd = (val, chars = "\n\t\r ") => {
   const regex = new RegExp(`[${chars}]+$`)
   return val.replace(regex, "")
 }
+
 
 const trimStart = (val, chars = "\n\t\r ") => {
   const regex = new RegExp(`^[${chars}]+`)
   return val.replace(regex, "")
 }
+
 
 const urlJoin = (base, ...append) => (
   [
@@ -20,12 +25,13 @@ const logFailedRequest = value => {
   console.log("unhandled failed request", value)
 }
 
+
 class ApiRequest {
   constructor(method, baseUrl, headers = {}, options = {}, onRequestFailed=null) {
     this.body = null
     this.params = {
       mode: "cors",
-      credentials: "same-origin",
+      credentials: "include",
       method,
       baseUrl,
       url: null
@@ -55,7 +61,7 @@ class ApiRequest {
   option = (key, value) => { this.options[key] = value; return this }
 
   json = (value) => {
-    this.headers.set("content-type", "application/json")
+    this.headers.set("Content-Type", "application/json")
     this.body = JSON.stringify(value)
     return this
   }
@@ -73,26 +79,30 @@ class ApiRequest {
     )
   }
 
-  fetch = () =>
-    fetch(this.makeRequest())
-    .then(response =>
-      (response.ok && response.status >= 200 && response.status < 400)
-      ? Promise.resolve( new ApiRequestContext(response, this) )
-      : Promise.reject( new ApiRequestContext(response, this) )
-    )
-    .catch(value => {
-      this.onRequestFailed
-      ? this.onRequestFailed(value)
-      : logFailedRequest(value)
-      return Promise.reject(value)
-    })
+  fetch = () => {
+    const req = this.makeRequest()
+    return fetch(req)
+      .then(response =>
+        (response.ok && response.status >= 200 && response.status < 400)
+          ? Promise.resolve(new ApiRequestContext(response, this))
+          : Promise.reject(new ApiRequestContext(response, this))
+      )
+      .catch(value => {
+        this.onRequestFailed
+          ? this.onRequestFailed(value)
+          : logFailedRequest(value)
+        return Promise.reject(value)
+      })
+  }
 }
+
 
 class ApiRequestContext {
   constructor(response, request) {
     this.request = request
     this.response = response
   }
+
   json = () =>
     this.response.json()
       .then(json => {
@@ -100,6 +110,7 @@ class ApiRequestContext {
         return Promise.resolve(this)
       })
 }
+
 
 export default class ApiConnector {
   constructor (defaultHeaders = {}, defaultOptions = {}, onRequestFailed=null) {
@@ -121,5 +132,5 @@ export default class ApiConnector {
   }
 
   api = (method, url, options) =>
-    this.request(method, process.env.PREACT_APP_API_URL, url, options)
+    this.request(method, constants.APIURL, url, options)
 }

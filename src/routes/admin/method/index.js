@@ -1,10 +1,15 @@
-import { debounceEffect } from "../../../components/util"
+import { debounceEffect } from "../../../util"
 import AdminDataTable from "../_table"
 import useQueryState from "../_query"
 import Breadcrumb from "../../../components/breadcrumb"
 import { useAppContext } from "../../../components/app"
 import { route } from "preact-router"
+<<<<<<< HEAD
 import { translate } from "../../../components/util"
+=======
+import constants from "../../../constants"
+
+>>>>>>> upstream/develop
 
 const columns = [
   {
@@ -50,7 +55,7 @@ const columns = [
   },
 ]
 
-export default (props) => {
+const AdminMethodIndex = () => {
   const { apiConnector } = useAppContext()
   const [queryState, queryDispatch] = useQueryState()
 
@@ -73,19 +78,24 @@ export default (props) => {
     <div class="m-3 flex-grow-1">
       <Breadcrumb
         items={[
+<<<<<<< HEAD
           { label: translate("Admin"), href: "/app/admin" },
           { label: translate("Method"), href: "/app/admin/method" },
+=======
+          { label: "Admin", href: constants.BASEURL + "/admin" },
+          { label: "Method", href: constants.BASEURL + "/admin/method" },
+>>>>>>> upstream/develop
         ]}
       />
       <AdminDataTable
         columns={columns}
         queryState={queryState}
         queryDispatch={queryDispatch}
-        onRowClicked={(row) => route(`/app/admin/method/${row.id}`)}
+        onRowClicked={(row) => route(`${constants.BASEURL}/admin/method/${row.id}`)}
       />
       <div class="text-end">
         <a
-          href="/app/admin/method/create"
+          href={constants.BASEURL + "/admin/method/create"}
           type="button"
           class="btn btn-primary"
         >
@@ -95,3 +105,5 @@ export default (props) => {
     </div>
   )
 }
+
+export default AdminMethodIndex

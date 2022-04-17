@@ -13,6 +13,7 @@ export default class OreForm extends Component {
     this.initialState = { ...props.model }
     this.state = { ...this.initialState }
   }
+
   render({ onSave, onDelete }, state) {
     return (
       <form action="javascript:void(0)">
@@ -26,13 +27,22 @@ export default class OreForm extends Component {
             onInput={(e) => this.setState({ name: e.target.value })}
             css={{ main: "mb-4" }}
           />
+          <Input
+            label="Ore Sell Price"
+            id="ore-sell-price"
+            type="number"
+            min="0"
+            value={state.sell_price}
+            onInput={(e) => this.setState({ sell_price: parseInt(e.target.value, 10) })}
+            css={{ main: "mb-4" }}
+          />
         </div>
         <div class="d-flex justify-content-between mt-3">
           {onDelete !== undefined && (
             <button
               type="submit"
               class="btn btn-danger"
-              onClick={(ev) => onDelete(state.id)}
+              onClick={() => onDelete(state.id)}
             >
               {translate("Delete")}
             </button>
@@ -41,7 +51,7 @@ export default class OreForm extends Component {
             <button
               type="submit"
               class="btn btn-primary"
-              onClick={(ev) => onSave(state)}
+              onClick={() => onSave(state)}
             >
               {translate("Save")}
             </button>

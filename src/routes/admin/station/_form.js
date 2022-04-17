@@ -6,11 +6,10 @@ class Efficiencies extends Component {
   /**
    * @constructor
    * @param {object} props
-   * @param {array} props.ores
    * @param {array} props.model
    * @param {function} props.onChange
    */
-  constructor({ ores, model }) {
+  constructor({ model }) {
     super()
     const efficiencyBonusPerOreId = model.reduce(
       (agg, item) => ({ ...agg, [item.ore_id]: item.efficiency_bonus }),
@@ -25,7 +24,7 @@ class Efficiencies extends Component {
       const { onChange } = this.props
       onChange(
         Object.keys(this.state).map((ore_id) => ({
-          ore_id: parseInt(ore_id),
+          ore_id: parseInt(ore_id, 10),
           efficiency_bonus: this.state[ore_id],
         }))
       )
@@ -35,10 +34,11 @@ class Efficiencies extends Component {
   render({ ores }, state) {
     return ores.map((ore, index) => (
       <Input
+        key={ore.id}
         label={ore.name}
         postfix="%"
         type="number"
-        min="0"
+        min="-100"
         max="100"
         step="1"
         id={`station-efficiency-bonus-${index}`}
@@ -59,7 +59,7 @@ class Efficiencies extends Component {
   }
 }
 
-export default class StationForm extends Component {
+class StationForm extends Component {
   /**
    * @param {object} props
    * @param {object} props.model
@@ -71,6 +71,7 @@ export default class StationForm extends Component {
     this.initialState = { ...props.model }
     this.state = { ...this.initialState }
   }
+
   render({ ores, onSave, onDelete }, state) {
     return (
       <form action="javascript:void(0)">
@@ -92,8 +93,8 @@ export default class StationForm extends Component {
           </div>
           <Efficiencies
             ores={ores}
-            model={state.efficiency}
-            onChange={(efficiency) => this.setState({ efficiency })}
+            model={state.efficiencies}
+            onChange={(efficiencies) => this.setState({ efficiencies })}
           />
         </div>
         <div class="d-flex justify-content-between mt-3">
@@ -101,7 +102,7 @@ export default class StationForm extends Component {
             <button
               type="submit"
               class="btn btn-danger"
-              onClick={(ev) => onDelete(state.id)}
+              onClick={() => onDelete(state.id)}
             >
                {translate("Delete")}
             </button>
@@ -110,7 +111,7 @@ export default class StationForm extends Component {
             <button
               type="submit"
               class="btn btn-primary"
-              onClick={(ev) => onSave(state)}
+              onClick={() => onSave(state)}
             >
                {translate("Save")}
             </button>
@@ -120,3 +121,5 @@ export default class StationForm extends Component {
     )
   }
 }
+
+export default StationForm
