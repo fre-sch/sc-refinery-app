@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { debounceEffect, translate } from "../../../components/util"
-=======
 import { debounceEffect } from "../../../util"
->>>>>>> upstream/develop
 import AdminDataTable from "../_table"
 import useQueryState from "../_query"
 import Breadcrumb from "../../../components/breadcrumb"
@@ -137,13 +133,8 @@ const AdminMiningSessionIndex = () => {
     <div class="m-3 flex-grow-1">
       <Breadcrumb
         items={[
-<<<<<<< HEAD
-          { label: translate("Admin"), href: "/app/admin" },
-          { label: translate("Mining Session"), href: "/app/admin/mining_session" },
-=======
           { label: "Admin", href: constants.BASEURL + "/admin" },
           { label: "Mining Session", href: constants.BASEURL + "/admin/mining_session" },
->>>>>>> upstream/develop
         ]}
       />
       <AdminDataTable
