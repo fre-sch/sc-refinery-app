@@ -12,7 +12,7 @@ const SidebarItem = ({ label, href, icon }) => (
   </li>
 )
 
-const HomeSidebar = () => {
+const HomeIndex = () => {
   return (
     <Sidebar>
       <ul class="nav nav-pills flex-column scrollarea">
@@ -20,7 +20,7 @@ const HomeSidebar = () => {
           label="Friends"
           href={constants.BASEURL + "/home/friends"}
           icon="person-fill"
-        />
+       />
         <SidebarItem
           label="Mining Session"
           href={constants.BASEURL + "/home/mining_session_user"}
@@ -41,4 +41,4 @@ const HomeSidebar = () => {
   )
 }
 
-export default HomeSidebar
+export default HomeIndex

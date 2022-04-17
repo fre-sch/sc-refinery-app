@@ -26,5 +26,4 @@ const HomeIndex = () => {
     </div>
   )
 }
-
 export default HomeIndex
