@@ -21,9 +21,7 @@ const HomeIndex = () => {
         <Outstanding_Payment path={constants.BASEURL + "/home/outstanding_payments"} />
         <Mining_Session_User path={constants.BASEURL + "/home/mining_session_user"} />
         <Settings path={constants.BASEURL + "/home/settings"} />
-
-  
-
+      
       </Router>
     </div>
   )
