@@ -1,8 +1,10 @@
 import { Router } from 'preact-router'
 import constants from "../../constants"
-import UserFriends from './friends'
 import  Sidebar  from "./_sidebar"
 import Mining_Session_User from "./mining_session_user"
+import Friends from "./friends"
+import Outstanding_Payment from "./Outstanding_Payments"
+import Settings from "./settings"
 
 const Default = () => (
   <div class="p-3">Welcome</div>
@@ -15,10 +17,10 @@ const HomeIndex = () => {
       <Router>
         <Default path={constants.BASEURL + "/home"} />
 
-        <UserFriends path={constants.BASEURL + "/home/friends"} />
-
+        <Friends path={constants.BASEURL + "/home/friends"} />
+        <Outstanding_Payment path={constants.BASEURL + "/home/outstanding_payments"} />
         <Mining_Session_User path={constants.BASEURL + "/home/mining_session_user"} />
-
+        <Settings path={constants.BASEURL + "/home/settings"} />
 
   
 
