@@ -109,52 +109,51 @@ export default class MethodForm extends Component {
   }
 
   render ({ ores, onSave, onDelete }, state) {
-  return (
-    <form action="javascript:void(0)">
-      <div>
-        <Input
-          label="Method Name"
-          id="method-name"
-          type="text"
-          placeholder="method name"
-          value={state.name}
-          onChange={(e) => this.setState({ name: e.target.value })}
-          css={{ main: "mb-4" }}
-        />
-      </div>
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-2">Ore</div>
-          <div class="col">Efficiency</div>
-          <div class="col">Cost per Unit</div>
-          <div class="col">Duration per Unit</div>
+    return (
+      <form action="javascript:void(0)">
+        <div>
+          <Input
+            label="Method Name"
+            id="method-name"
+            type="text"
+            placeholder="method name"
+            value={state.name}
+            onChange={(e) => this.setState({ name: e.target.value })}
+            css={{ main: "mb-4" }}
+          />
         </div>
-        <ValuesPerOre
-          ores={ores}
-          model={state.efficiencies}
-          onChange={(efficiencies) => this.setState({ efficiencies })}
-        />
-      </div>
-      <div class="d-flex justify-content-between mt-3">
-        {onDelete !== undefined && (
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-2">Ore</div>
+            <div class="col">Efficiency</div>
+            <div class="col">Cost per Unit</div>
+            <div class="col">Duration per Unit</div>
+          </div>
+          <ValuesPerOre
+            ores={ores}
+            model={state.efficiencies}
+            onChange={(efficiencies) => this.setState({ efficiencies })}
+          />
+        </div>
+        <div class="text-end mt-3">
+          {onDelete !== undefined && (
+            <button
+              type="submit"
+              class="btn btn-danger me-2"
+              onClick={() => onDelete(state)}
+            >
+              Delete
+            </button>
+          )}
           <button
             type="submit"
-            class="btn btn-danger"
-            onClick={() => onDelete(state)}
+            class="btn btn-primary"
+            onClick={() => onSave(state)}
           >
-            Delete
+            Save
           </button>
-        )}
-        <button
-          type="submit"
-          class="btn btn-primary"
-          onClick={() => onSave(state)}
-        >
-          Save
-        </button>
-      </div>
-    </form>
-  )
-}
-
+        </div>
+      </form>
+    )
+  }
 }
