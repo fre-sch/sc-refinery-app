@@ -34,6 +34,20 @@ const Navbar = () => {
                 path={constants.BASEURL + "/admin/:rest*"}
                 href={constants.BASEURL + "/admin"}>Admin</NavLink>
             )}
+              </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a
+                href="#"
+                class="nav-link"
+                onClick={stopEvent(() => {
+                  dispatch({ type: "" })
+                })}
+              >
+                Miner Online 8
+              </a>
+            </li>
+
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
