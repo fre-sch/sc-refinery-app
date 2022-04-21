@@ -106,10 +106,6 @@ export const filterableToQuery = (value) =>
     .map((key) => `${key}:${value[key]}`)
     .join(";")
 
-<<<<<<< HEAD:src/components/util.js
-export const translate = (value) => value 
-  
-=======
 
 /**
  * Take optional string and return with postfix appended if not empty.
@@ -130,4 +126,3 @@ export const formatDuration = (value) => {
 
   return `${postfix(days, "d ")}${postfix(hours, "h ")}${postfix(minutes, "m ")}${postfix(seconds, "s")}`
 }
->>>>>>> upstream/develop:src/util.js
