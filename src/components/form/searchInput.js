@@ -78,7 +78,12 @@ class SearchInput extends Component {
   }
 
   setValue = (value) => {
-    this.setState({ value, searchValue: null, showMenu: false })
+    const { clearOnChange, onChange } = this.props
+    const state = { searchValue: null, showMenu: false }
+    if (!clearOnChange) {
+      state.value = value
+    }
+    this.setState(state, () => onChange(value))
   }
 
   toggleMenu = () => {
@@ -97,6 +102,7 @@ class SearchInput extends Component {
         </label>
         <div class="input-group dropdown">
           <input
+            autocomplete="off"
             type="text"
             class="form-control"
             id={id}

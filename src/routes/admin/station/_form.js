@@ -96,11 +96,11 @@ class StationForm extends Component {
             onChange={(efficiencies) => this.setState({ efficiencies })}
           />
         </div>
-        <div class="d-flex justify-content-between mt-3">
+        <div class="text-end mt-3">
           {onDelete !== undefined && (
             <button
               type="submit"
-              class="btn btn-danger"
+              class="btn btn-danger me-2"
               onClick={() => onDelete(state.id)}
             >
               Delete

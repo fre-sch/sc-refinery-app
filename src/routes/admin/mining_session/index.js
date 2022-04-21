@@ -42,6 +42,7 @@ const columns = [
   {
     header: {
       title: "users_invited_count",
+      classnames: "text-ellipsis",
     },
     body: {
       value: "users_invited_count",
@@ -51,6 +52,7 @@ const columns = [
   {
     header: {
       title: "entries_count",
+      classnames: "text-ellipsis",
     },
     body: {
       value: "entries_count",
@@ -141,7 +143,7 @@ const AdminMiningSessionIndex = () => {
         columns={columns}
         queryState={queryState}
         queryDispatch={queryDispatch}
-        onRowClicked={(row) => route(`${constants.BASEURL}/admin/mining_session/${row.id}/entry`)}
+        onRowClicked={(row) => route(`${constants.BASEURL}/admin/mining_session/${row.id}`)}
       />
     </div>
   )

@@ -25,7 +25,6 @@ export default class OreForm extends Component {
             placeholder="ore name"
             value={state.name}
             onInput={(e) => this.setState({ name: e.target.value })}
-            css={{ main: "mb-4" }}
           />
           <Input
             label="Ore Sell Price"
@@ -34,14 +33,13 @@ export default class OreForm extends Component {
             min="0"
             value={state.sell_price}
             onInput={(e) => this.setState({ sell_price: parseInt(e.target.value, 10) })}
-            css={{ main: "mb-4" }}
           />
         </div>
-        <div class="d-flex justify-content-between mt-3">
+        <div class="text-end mt-3">
           {onDelete !== undefined && (
             <button
               type="submit"
-              class="btn btn-danger"
+              class="btn btn-danger me-2"
               onClick={() => onDelete(state.id)}
             >
               Delete

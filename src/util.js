@@ -8,13 +8,11 @@ export const dispatchEvent = (element, eventName, eventDetails) => {
   }))
 }
 
-
 export const debounceEffect = (fun, deps, time=250) =>
   useEffect(() => {
     const timeoutId = setTimeout(fun, time)
     return () => clearTimeout(timeoutId)
   }, deps)
-
 
 export const stopEvent = (fn) => (ev) => {
   ev.stopPropagation()
@@ -22,15 +20,11 @@ export const stopEvent = (fn) => (ev) => {
   fn(ev)
 }
 
-
 export const compose = (g, f) => (...x) => g(f(...x))
-
 
 export const identity = (x) => x
 
-
 const sideEffect = (dispatch) => (action) => { dispatch(action); return action }
-
 
 export const combineReducers = (reducers) =>
   Object.keys(reducers)
@@ -44,6 +38,31 @@ export const combineReducers = (reducers) =>
     }
   , [{}, identity])
 
+
+/**
+ * @param {object} handlers
+ * @param {function} handlers.*
+ * @returns {function}
+ */
+const mapHandlers = (handlers) => (state, { type, ...data }) => {
+  const handler = handlers[type]
+  if (handler === undefined) return state
+  return handler(state, data)
+}
+
+/**
+ * Create a dispatch object with methods for each key in handlers.
+ * each dispatch object method will call dispatch like
+ * ``dispatch({ type: key, ...data })``
+ */
+export const actionDispatch = (handlers, [state, dispatch]) =>
+  [ state, Object.keys(handlers).reduce((agg, key) => {
+    agg[key] = (eventData) => dispatch({ type: key, ...eventData })
+    return agg
+  }, {}) ]
+
+export const useActionReducer = (handlers, initial) =>
+  actionDispatch(handlers, useReducer(mapHandlers(handlers), initial))
 
 export const usvEncode = (params) =>
   Object.keys(params).reduce((usv, key) => {
