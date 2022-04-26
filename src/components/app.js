@@ -90,8 +90,7 @@ const checkTokenCookie = (apiConnector, stateUser, dispatch) => {
     return
 
   apiConnector
-    .api("POST", "/login_session")
-    .fetch()
+    .api().post("login_session").fetch()
     .then(result => result.json())
     .then(result => {
       dispatch({ type: "loginSuccess", user: result.json })
@@ -106,9 +105,7 @@ const fetchLogin = (apiConnector, state, dispatch) =>
   useEffect(() => {
     if (!state.login.credentials) return;
     apiConnector
-      .api("POST", "/login")
-      .json(state.login.credentials)
-      .fetch()
+      .api().post("login").json(state.login.credentials).fetch()
       .then(result => result.json())
       .then(result => {
         dispatch({ type: "loginSuccess", user: result.json })

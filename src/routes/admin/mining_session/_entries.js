@@ -21,6 +21,7 @@ const columns = [
     },
     body: {
       value: "user.name",
+      classnames: "text-ellipsis"
     },
   },
   {
@@ -76,14 +77,21 @@ const columns = [
       title: "profit",
     },
     body: {
-      value: (row) => Number(row.profit).toFixed(2),
+      view: (row) => (
+        <td title="quantity * (method.efficiency + station.efficiency_bonus) * ore.sell_price - method.cost">
+          {Number(row.profit).toFixed(2)}
+        </td>
+      )
     },
   },
 ]
 
+const totalProfit = ({ entries }) => entries.reduce((acc, entry) => acc + entry.profit, 0).toFixed(2)
+
 const MiningSessionEntries = ({ model }) => {
   return (
     <div class="mt-3">
+      <div class="text-end">Total profit: <strong>{ totalProfit(model) }</strong></div>
       <DataTable
         columns={columns}
         items={model.entries}

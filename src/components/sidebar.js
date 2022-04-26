@@ -5,7 +5,7 @@ import { FilterInput } from './filtering'
 import { Icon } from "./icon"
 
 export const Sidebar = ({ children }) => (
-  <div class="sidebar bg-light p-3">
+  <div class="sidebar bg-light p-2">
     {children}
   </div>
 )

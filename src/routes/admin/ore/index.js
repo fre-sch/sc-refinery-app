@@ -68,7 +68,7 @@ const AdminOreIndex = () => {
     () => {
       queryDispatch("loading", {})
       apiConnector
-        .api("GET", "/ore/?" + queryState.queryParams)
+        .api().get("ore/").query(queryState.queryParams)
         .fetch()
         .then((result) => result.json())
         .then((context) => {

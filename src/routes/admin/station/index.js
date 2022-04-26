@@ -57,7 +57,7 @@ const AdminStationIndex = () => {
   debounceEffect(
     () => {
       apiConnector
-        .api("GET", "/station/?" + queryState.queryParams)
+        .api().get("station/").query(queryState.queryParams)
         .fetch()
         .then((result) => result.json())
         .then((context) => {

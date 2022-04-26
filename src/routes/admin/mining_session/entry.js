@@ -25,7 +25,7 @@ const load = (apiConnector, dispatch, state) => () => {
   if (state.model !== null) return
   dispatch.loading()
   apiConnector
-    .api("GET", `/mining_session/${state.modelId}`)
+    .api().get("mining_session", state.modelId)
     .fetch()
     .then((result) => result.json())
     .then((context) => {
@@ -51,7 +51,7 @@ const AdminMiningSessionEntryEdit = ({ modelId, entryId }) => {
   const entryDelete = (entry) => {
     dispatch.loading()
     apiConnector
-      .api("DELETE", `/mining_session/${state.session.id}/entry/${entry.id}`)
+      .api().delete("mining_session", state.session.id, "entry", entry.id)
       .fetch()
       .then(() => {
         route(`${constants.BASEURL}/admin/mining_session/${state.session.id}/`)
@@ -64,7 +64,7 @@ const AdminMiningSessionEntryEdit = ({ modelId, entryId }) => {
   const entryUpdate = (entry) => {
     dispatch.loading()
     apiConnector
-      .api("PUT", `/mining_session/${state.session.id}/entry/${entry.id}`)
+      .api().put("mining_session", state.session.id, "entry", entry.id)
       .json(entry)
       .fetch()
       .then((response) => response.json())
@@ -79,12 +79,12 @@ const AdminMiningSessionEntryEdit = ({ modelId, entryId }) => {
   const entryCreate = (entry) => {
     dispatch.loading()
     apiConnector
-      .api("POST", `/mining_session/${state.session.id}/entry`)
+      .api().post("mining_session", state.session.id, "entry")
       .json(entry)
       .fetch()
       .then((response) => response.json())
       .then((context) => {
-        dispatch.loadSuccess({ model: context.json })
+        route(`${constants.BASEURL}/admin/mining_session/${state.session.id}/entry`)
       })
       .catch(() => {
         dispatch.loadFailure()

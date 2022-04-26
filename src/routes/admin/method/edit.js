@@ -5,7 +5,7 @@ import Spinner from "../../../components/spinner"
 import { useAppContext } from "../../../components/app"
 import MethodForm from "./_form"
 import constants from "../../../constants"
-import { useActionReducer } from "../../../util"
+import { useActionReducer, usvEncode } from "../../../util"
 import defaultActions from "../_defaultActions"
 
 const actionHandlers = {
@@ -24,8 +24,7 @@ const loadMethod = (apiConnector, dispatch, state) => () => {
   if (state.model !== null) return;
   dispatch.loading()
   apiConnector
-    .api("GET", `/method/${state.modelId}`)
-    .fetch()
+    .api().get("method", state.modelId).fetch()
     .then((result) => result.json())
     .then((context) => {
       dispatch.loadSuccess({ model: context.json })
@@ -39,8 +38,7 @@ const loadOres = (apiConnector, dispatch, state) => () => {
   if (state.ores !== null) return
   dispatch.loading()
   apiConnector
-    .api("GET", "/ore/?limit=-1")
-    .fetch()
+    .api().get("ore/").query({limit: -1}).fetch()
     .then((result) => result.json())
     .then((context) => {
       dispatch.loadSuccess({ ores: context.json.items })
@@ -68,8 +66,7 @@ const AdminMethodEdit = ({ modelId }) => {
   const updateModel = (model) => {
     dispatch.loading()
     apiConnector
-      .api("PUT", `/method/${model.id}`)
-      .json(model)
+      .api().put("method", model.id).json(model)
       .fetch()
       .then((result) => result.json())
       .then((context) => {
@@ -83,7 +80,7 @@ const AdminMethodEdit = ({ modelId }) => {
   const deleteModel = (model) => {
     dispatch.loading()
     apiConnector
-      .api("DELETE", `/method/${model.id}`)
+      .api().delete("method", model.id)
       .fetch()
       .then(() => {
         route(constants.BASEURL + "/admin/method/")

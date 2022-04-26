@@ -58,7 +58,7 @@ const AdminMethodIndex = () => {
   debounceEffect(
     () => {
       apiConnector
-        .api("GET", "/method/?" + queryState.queryParams)
+        .api().get("method/").query(queryState.queryParams)
         .fetch()
         .then((result) => result.json())
         .then((context) => {

@@ -6,7 +6,7 @@ import { useAppContext } from "../../../components/app"
 import StationForm from "./_form"
 import constants from "../../../constants"
 import defaultActions from "../_defaultActions"
-import { useActionReducer } from "../../../util"
+import { useActionReducer, usvEncode } from "../../../util"
 
 
 const actions = {
@@ -26,7 +26,7 @@ const loadStation = (apiConnector, dispatch, state) => () => {
   if (state.model !== null) return
   dispatch.loading()
   apiConnector
-    .api("GET", `/station/${state.modelId}`)
+    .api().get("station", state.modelId)
     .fetch()
     .then((result) => result.json())
     .then((context) => {
@@ -41,7 +41,7 @@ const loadOres = (apiConnector, dispatch, state) => () => {
   if (state.ores !== null) return
   dispatch.loading()
   apiConnector
-    .api("GET", "/ore/?limit=-1")
+    .api().get("ore/").query({limit: -1})
     .fetch()
     .then((result) => result.json())
     .then((context) => {
@@ -67,8 +67,7 @@ const AdminStationEdit = ({ modelId }) => {
   const saveModel = (model) => {
     dispatch.loading()
     apiConnector
-      .api("PUT", `/station/${model.id}`)
-      .json(model)
+      .api().put("station", model.id).json(model)
       .fetch()
       .then((result) => result.json())
       .then((context) => {
@@ -82,7 +81,7 @@ const AdminStationEdit = ({ modelId }) => {
   const deleteModel = (modelId) => {
     dispatch.loading()
     apiConnector
-      .api("DELETE", `/station/${modelId}`)
+      .api().delete("station", modelId)
       .fetch()
       .then(() => {
         route(constants.BASEURL + "/admin/station/")

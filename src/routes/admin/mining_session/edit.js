@@ -9,6 +9,7 @@ import MiningSessionTabs from "./_tabs"
 import MiningSessionParticipants from "./_participants"
 import MiningSessionEntries from "./_entries"
 import MiningSessionForm from "./_form"
+import MiningSessionPayoutSummary from "./_payoutSummary"
 import defaultActions from "../_defaultActions"
 
 const actions = {
@@ -41,8 +42,7 @@ const loadMiningSession = (apiConnector, dispatch, state) => () => {
   if (state.model !== null) return
   dispatch.loading()
   apiConnector
-    .api("GET", `/mining_session/${state.modelId}`)
-    .fetch()
+    .api().get("mining_session", state.modelId).fetch()
     .then((result) => result.json())
     .then((context) => {
       dispatch.loadSuccess({ model: context.json })
@@ -63,9 +63,7 @@ const AdminMiningSessionEdit = ({ modelId }) => {
   const onSave = (model) => {
     dispatch.loading()
     apiConnector
-      .api("PUT", `/mining_session/${model.id}`)
-      .json(model)
-      .fetch()
+      .api().put("mining_session", model.id).json(model).fetch()
       .then((response) => response.json())
       .then((context) => {
         dispatch.loadSuccess({ model: context.json })
@@ -110,11 +108,11 @@ const AdminMiningSessionEdit = ({ modelId }) => {
             remove={(value) => dispatch.removeParticipant(value)}
             onSave={onSave}
           />
-          <div
+          <MiningSessionPayoutSummary
             id="tab-mining-session-payout-summary"
             model={state.model}
-            path={constants.BASEURL + "/admin/mining_session/:modelId/payout"}
-          ></div>
+            path={constants.BASEURL + "/admin/mining_session/:modelId/payout_summary"}
+          />
         </Router>
       </Spinner>
     </div>

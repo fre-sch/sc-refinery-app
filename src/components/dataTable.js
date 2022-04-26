@@ -90,10 +90,15 @@ const TableHeader = ({ columns, view }) => (
   </thead>
 )
 
+
+
 const TableBody = ({ columns, items, view, onRowClicked }) => (
   <tbody>
     {items.map((item, index) =>
-      <tr key={index} onDblClick={() => onRowClicked(item)}>{
+      <tr key={index} onDblClick={(ev) => {
+        onRowClicked(item)
+      }
+      }>{
         columns.map(col => view.bodyColumn(col, item))
       }</tr>
     )}

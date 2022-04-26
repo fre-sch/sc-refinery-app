@@ -1,4 +1,5 @@
 import { useEffect, useReducer } from "preact/hooks"
+import isNil from "lodash/isNil"
 
 export const dispatchEvent = (element, eventName, eventDetails) => {
   element.dispatchEvent(new CustomEvent(eventName, {
@@ -8,11 +9,13 @@ export const dispatchEvent = (element, eventName, eventDetails) => {
   }))
 }
 
+
 export const debounceEffect = (fun, deps, time=250) =>
   useEffect(() => {
     const timeoutId = setTimeout(fun, time)
     return () => clearTimeout(timeoutId)
   }, deps)
+
 
 export const stopEvent = (fn) => (ev) => {
   ev.stopPropagation()
@@ -20,11 +23,15 @@ export const stopEvent = (fn) => (ev) => {
   fn(ev)
 }
 
+
 export const compose = (g, f) => (...x) => g(f(...x))
+
 
 export const identity = (x) => x
 
+
 const sideEffect = (dispatch) => (action) => { dispatch(action); return action }
+
 
 export const combineReducers = (reducers) =>
   Object.keys(reducers)
@@ -61,14 +68,47 @@ export const actionDispatch = (handlers, [state, dispatch]) =>
     return agg
   }, {}) ]
 
+
 export const useActionReducer = (handlers, initial) =>
   actionDispatch(handlers, useReducer(mapHandlers(handlers), initial))
 
+
+export const prefix = (prefix_, value) => (value ? `${prefix_}${value}` : value)
+
+
+class xURLSearchParams extends URLSearchParams {
+  toString() {
+    return prefix("?", super.toString())
+  }
+}
+
 export const usvEncode = (params) =>
-  Object.keys(params).reduce((usv, key) => {
+  Object.keys(isNil(params) ? {} : params).reduce((usv, key) => {
     usv.append(key, params[key])
     return usv
-  }, new URLSearchParams())
+  }, new xURLSearchParams())
+
+export const trimEnd = (val, chars = "\n\t\r ") => {
+  const regex = new RegExp(`[${chars}]+$`)
+  return val.replace(regex, "")
+}
+
+
+export const trimStart = (val, chars = "\n\t\r ") => {
+  const regex = new RegExp(`^[${chars}]+`)
+  return val.replace(regex, "")
+}
+
+
+export const trim = (val, chars = "\n\t\r ") =>
+  trimStart(trimEnd(val, chars), chars)
+
+
+export const urlJoin = (base, ...values) => (
+  trimEnd(base, "/") + "/" + trimStart(
+    values.join("/").replace(/\/+/g, "/"),
+    "/")
+)
 
 
 export const setCookie = (name, value, options = {}) => {

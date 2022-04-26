@@ -30,8 +30,7 @@ const AdminOreCreate = () => {
   const saveModel = (model) => {
     dispatch.loading()
     apiConnector
-      .api("POST", "/ore/")
-      .json(model)
+      .api().post("ore/").json(model)
       .fetch()
       .then((result) => result.json())
       .then((context) => {

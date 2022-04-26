@@ -24,7 +24,7 @@ const loadOres = (apiConnector, dispatch, state) => () => {
   if (state.ores !== null) return
   dispatch.loading()
   apiConnector
-    .api("GET", "/ore/?limit=-1")
+    .api().get("ore/").query({ limit: -1 })
     .fetch()
     .then((result) => result.json())
     .then((context) => {
@@ -52,7 +52,7 @@ const AdminStationCreate = () => {
   const saveModel = (model) => {
     dispatch.loading()
     apiConnector
-      .api("POST", "/station/")
+      .api().post("station/")
       .json(model)
       .fetch()
       .then((result) => result.json())

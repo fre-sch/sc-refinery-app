@@ -18,24 +18,27 @@ class MiningSessionEntryForm extends Component {
     this.setState(this.initState(nextProps.model))
   }
 
-  initState(entry) {
-    if (isNil(entry))
-      return {
-        user: null,
-        station: null,
-        method: null,
-        ore: null,
-        quantity: 0,
-        duration: 0,
-      }
-    return entry
-  }
+  initState = (entry) =>
+    isNil(entry)
+    ? {
+      user: null,
+      station: null,
+      method: null,
+      ore: null,
+      quantity: 0,
+      duration: 0,
+    }
+    : entry
 
   render({ onDelete, onSave }, model) {
     const { apiConnector } = useAppContext()
     const searchFn = (type) => (name) =>
       apiConnector
-        .api("GET", `/${type}/?filter=name:${name || ""}&limit=-1&sort=name:asc`)
+        .api().get(`${type}/`).query({
+          filter: "name:" + (name || ""),
+          limit: -1,
+          sort: "name:asc",
+        })
         .fetch()
         .then((result) => result.json())
         .then((context) =>

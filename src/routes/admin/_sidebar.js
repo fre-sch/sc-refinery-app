@@ -1,14 +1,19 @@
-import { useRouter } from "preact-router"
 import Link from "../../components/link"
 import { Icon } from "../../components/icon"
 import { Sidebar } from "../../components/sidebar"
 import constants from "../../constants"
 
 const SidebarItem = ({ label, href, path, icon }) => (
-  <li class="nav-item">
-    <Link href={href} path={`${href}/:rest*`} class="nav-link" activeClass="active">
+  <li class="nav-item text-nowrap">
+    <Link
+      href={href}
+      path={`${href}/:rest*`}
+      class="nav-link"
+      activeClass="active"
+      title={label}
+    >
       <Icon cls={icon} />
-      {label}
+      <span class="d-none d-sm-none d-md-inline">{label}</span>
     </Link>
   </li>
 )

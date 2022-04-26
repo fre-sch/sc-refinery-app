@@ -37,7 +37,7 @@ const MiningSessionTabs = ({ model }) => {
       </li>
       <li class="nav-item">
         <Link
-          href={`${constants.BASEURL}/admin/mining_session/${model.id}/payout`}
+          href={`${constants.BASEURL}/admin/mining_session/${model.id}/payout_summary`}
           class="nav-link"
           activeClassName="active"
         >

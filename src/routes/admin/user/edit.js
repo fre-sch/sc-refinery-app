@@ -20,7 +20,7 @@ const loadUser = (apiConnector, dispatch, state) => () => {
   if (state.model !== null) return
   dispatch.loading()
   apiConnector
-    .api("GET", `/user/${state.modelId}`)
+    .api().get("user", state.modelId)
     .fetch()
     .then((result) => result.json())
     .then((context) => {
@@ -44,7 +44,7 @@ const AdminUserEdit = ({ modelId }) => {
   const updateModel = (data) => {
     dispatch.loading()
     apiConnector
-      .api("PUT", `/user/${state.modelId}`)
+      .api().put("user", state.modelId)
       .json(data)
       .fetch()
       .then((result) => result.json())
@@ -59,7 +59,7 @@ const AdminUserEdit = ({ modelId }) => {
   const deleteModel = (model) => {
     dispatch.loading()
     apiConnector
-      .api("DELETE", `/user/${model.id}`)
+      .api().delete("user", model.id)
       .fetch()
       .then(() => {
         route(constants.BASEURL + "/admin/user/")

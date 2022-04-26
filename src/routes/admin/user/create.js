@@ -18,8 +18,7 @@ const AdminUserCreate = () => {
 
   const createModel = (data) => {
     apiConnector
-      .api("POST", "/user/")
-      .json(data)
+      .api().post("user/").json(data)
       .fetch()
       .then((result) => result.json())
       .then((context) => {

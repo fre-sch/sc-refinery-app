@@ -92,7 +92,7 @@ const AdminUserIndex = () => {
   debounceEffect(
     () => {
       apiConnector
-        .api("GET", "/user/?" + queryState.queryParams)
+        .api().get("user/").query(queryState.queryParams)
         .fetch()
         .then((result) => result.json())
         .then((context) => {

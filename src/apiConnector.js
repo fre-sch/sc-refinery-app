@@ -1,32 +1,11 @@
+import { urlJoin, usvEncode } from "./util"
 import constants from "./constants"
-
-
-const trimEnd = (val, chars = "\n\t\r ") => {
-  const regex = new RegExp(`[${chars}]+$`)
-  return val.replace(regex, "")
-}
-
-
-const trimStart = (val, chars = "\n\t\r ") => {
-  const regex = new RegExp(`^[${chars}]+`)
-  return val.replace(regex, "")
-}
-
-
-const urlJoin = (base, ...append) => (
-  [
-    trimEnd(base, "/"),
-    ...append.map(it => trimStart(it, "/"))
-  ].join("/")
-)
-
 
 const logFailedRequest = value => {
   console.log("unhandled failed request", value)
 }
 
-
-class ApiRequest {
+export class ApiRequest {
   constructor(method, baseUrl, headers = {}, options = {}, onRequestFailed=null) {
     this.body = null
     this.params = {
@@ -34,7 +13,8 @@ class ApiRequest {
       credentials: "include",
       method,
       baseUrl,
-      url: null
+      url: null,
+      query: null,
     }
     this.headers = new Headers(headers)
     this.options = options
@@ -50,6 +30,8 @@ class ApiRequest {
   method = (method) => this.param("method", method)
 
   url = (url) => this.param("url", url)
+
+  query = (query) => this.param("query", query)
 
   baseUrl = (url) => this.param("baseUrl", url)
 
@@ -67,9 +49,10 @@ class ApiRequest {
   }
 
   makeRequest () {
-    const { url, baseUrl, ...params } = this.params
+    const { baseUrl, url, query, ...params } = this.params
+    const requestUrl = urlJoin(baseUrl, ...url);
     return new Request(
-      urlJoin(baseUrl, url),
+      requestUrl + usvEncode(query),
       {
         headers: this.headers,
         body: this.body,
@@ -78,6 +61,12 @@ class ApiRequest {
       }
     )
   }
+
+  get = (...url) => this.url(url).method("GET")
+  post = (...url) => this.url(url).method("POST")
+  put = (...url) => this.url(url).method("PUT")
+  patch = (...url) => this.url(url).method("PATCH")
+  delete = (...url) => this.url(url).method("DELETE")
 
   fetch = () => {
     const req = this.makeRequest()
@@ -96,7 +85,6 @@ class ApiRequest {
   }
 }
 
-
 class ApiRequestContext {
   constructor(response, request) {
     this.request = request
@@ -113,24 +101,38 @@ class ApiRequestContext {
 
 
 export default class ApiConnector {
-  constructor (defaultHeaders = {}, defaultOptions = {}, onRequestFailed=null) {
+  constructor(
+    defaultHeaders = {},
+    defaultOptions = {},
+    onRequestFailed = null
+  ) {
     this.defaultHeaders = new Headers(defaultHeaders)
     this.defaultOptions = defaultOptions
     this.onRequestFailed = onRequestFailed
   }
 
-  setDefaultHeader (headerName, value) {
+  setDefaultHeader(headerName, value) {
     this.defaultHeaders.set(headerName, value)
     return this
   }
 
   request = (method, baseUrl, url, options) => {
-    const r = new ApiRequest(method, baseUrl,
-      this.defaultHeaders, { ...this.defaultOptions, ...options },
-      this.onRequestFailed)
+    const r = new ApiRequest(
+      method,
+      baseUrl,
+      this.defaultHeaders,
+      { ...this.defaultOptions, ...options },
+      this.onRequestFailed
+    )
     return r.url(url)
   }
 
-  api = (method, url, options) =>
-    this.request(method, constants.APIURL, url, options)
+  api = (options = {}) =>
+    new ApiRequest(
+      null,
+      constants.APIURL,
+      this.defaultHeaders,
+      { ...this.defaultOptions, ...options },
+      this.onRequestFailed
+    )
 }

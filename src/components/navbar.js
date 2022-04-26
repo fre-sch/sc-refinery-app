@@ -14,7 +14,7 @@ const NavLink = ({ href, path, children }) => (
 const Navbar = () => {
   const { login, dispatch } = useAppContext()
   return (
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
           SC-REFINERY

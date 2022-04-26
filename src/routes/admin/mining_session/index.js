@@ -118,7 +118,7 @@ const AdminMiningSessionIndex = () => {
   debounceEffect(
     () => {
       apiConnector
-        .api("GET", "/mining_session/?" + queryState.queryParams)
+        .api().get("mining_session/").query(queryState.queryParams)
         .fetch()
         .then((result) => result.json())
         .then((context) => {

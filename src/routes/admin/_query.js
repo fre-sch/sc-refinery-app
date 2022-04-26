@@ -49,7 +49,7 @@ const queryParams = ({ page, perPage, sort, filter }) => {
   const offset = perPage * page
   sort = sortableToQuery(sort)
   filter = filterableToQuery(filter)
-  return usvEncode({ offset, limit, sort, filter })
+  return { offset, limit, sort, filter }
 }
 
 export default () => {

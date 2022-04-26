@@ -5,7 +5,7 @@ import Spinner from "../../../components/spinner"
 import { useAppContext } from "../../../components/app"
 import MethodForm from "./_form"
 import constants from "../../../constants"
-import { useActionReducer } from "../../../util"
+import { useActionReducer, usvEncode } from "../../../util"
 import defaultActions from "../_defaultActions"
 
 
@@ -24,8 +24,7 @@ const loadOres = (apiConnector, dispatch, state) => () => {
   if (state.ores !== null) return
   dispatch.loading()
   apiConnector
-    .api("GET", "/ore/?limit=-1")
-    .fetch()
+    .api().get("ore/").query({limit: -1}).fetch()
     .then((result) => result.json())
     .then((context) => {
       dispatch.loadSuccess({ ores: context.json.items })
@@ -50,8 +49,7 @@ const AdminMethodCreate = () => {
   const saveModel = (model) => {
     dispatch.loading()
     apiConnector
-      .api("POST", "/method/")
-      .json(model)
+      .api().post("method/").json(model)
       .fetch()
       .then((result) => result.json())
       .then((context) => {

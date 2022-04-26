@@ -20,7 +20,7 @@ const loadOre = (apiConnector, dispatch, state) => () => {
   if (state.model !== null) return
   dispatch.loading()
   apiConnector
-    .api("GET", `/ore/${state.modelId}`)
+    .api().get("ore/", state.modelId)
     .fetch()
     .then((result) => result.json())
     .then((context) => {
@@ -44,8 +44,7 @@ const AdminOreEdit = ({ modelId }) => {
   const saveModel = (model) => {
     dispatch.loading()
     apiConnector
-      .api("PUT", `/ore/${model.id}`)
-      .json(model)
+      .api().put("ore", model.id).json(model)
       .fetch()
       .then((result) => result.json())
       .then((context) => {
@@ -57,7 +56,7 @@ const AdminOreEdit = ({ modelId }) => {
   const deleteModel = (model) => {
     dispatch.loading()
     apiConnector
-      .api("DELETE", `/ore/${model.id}`)
+      .api().delete("ore", model.id)
       .fetch()
       .then(() => {
         route(constants.BASEURL + "/admin/ore/")
