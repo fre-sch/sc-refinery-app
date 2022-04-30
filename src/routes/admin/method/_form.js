@@ -110,7 +110,7 @@ export default class MethodForm extends Component {
 
   render ({ ores, onSave, onDelete }, state) {
     return (
-      <form action="javascript:void(0)">
+      <form action="javascript:void(0)" class="col-xxl-6">
         <div>
           <Input
             label="Method Name"

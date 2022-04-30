@@ -73,7 +73,7 @@ class StationForm extends Component {
 
   render({ ores, onSave, onDelete }, state) {
     return (
-      <form action="javascript:void(0)">
+      <form action="javascript:void(0)" class="col-md-6">
         <div>
           <Input
             label="Station Name"

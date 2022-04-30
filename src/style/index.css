@@ -47,3 +47,25 @@ button.btn-danger-hover:hover {
   background-color: var(--bs-danger);
   color: var(--bs-white);
 }
+
+.row > *:first-child {
+    padding-left: 0;
+}
+.row > *:last-child {
+    padding-right: 0;
+}
+
+table.table-fixed {
+    table-layout: fixed;
+}
+
+.table-fixed th,
+.table-fixed td {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.table-hover tbody tr {
+    cursor: pointer;
+}

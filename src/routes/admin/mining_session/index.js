@@ -5,6 +5,8 @@ import Breadcrumb from "../../../components/breadcrumb"
 import { useAppContext } from "../../../components/app"
 import constants from "../../../constants"
 import { route } from "preact-router"
+import isNil from "lodash/isNil"
+import {Icon} from "../../../components/icon"
 
 const columns = [
   {
@@ -35,14 +37,13 @@ const columns = [
     body: {
       value: "creator.name",
     },
-    filterable: "creator_name",
-    sortable: "creator_name",
+    filterable: "creator.name",
+    sortable: "creator.name",
     width: 2,
   },
   {
     header: {
       title: "users_invited_count",
-      classnames: "text-ellipsis",
     },
     body: {
       value: "users_invited_count",
@@ -51,8 +52,7 @@ const columns = [
   },
   {
     header: {
-      title: "entries_count",
-      classnames: "text-ellipsis",
+      title: "entries_count"
     },
     body: {
       value: "entries_count",
@@ -81,30 +81,10 @@ const columns = [
   },
   {
     header: {
-      title: "created",
-    },
-    body: {
-      value: "created",
-    },
-    sortable: "created",
-    width: 1,
-  },
-  {
-    header: {
-      title: "updated",
-    },
-    body: {
-      value: "updated",
-    },
-    sortable: "updated",
-    width: 1,
-  },
-  {
-    header: {
       title: "archived",
     },
     body: {
-      value: "archived",
+      value: (row) => isNil(row.archived) ? "" : <Icon cls="check-square-fill"/>,
     },
     sortable: "archived",
     width: 1,

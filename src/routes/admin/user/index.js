@@ -6,9 +6,7 @@ import { useAppContext } from "../../../components/app"
 import { route } from "preact-router"
 import constants from "../../../constants"
 import { Icon } from "../../../components/icon"
-
-// TODO: what was I going to this for?
-// const scopeMaxLength = 20
+import DateRelative from "../../../components/dateRelative"
 
 const columns = [
   {
@@ -27,7 +25,6 @@ const columns = [
     },
     body: {
       value: "name",
-      classnames: "text-ellipsis"
     },
     width: 4,
     filterable: "name",
@@ -49,7 +46,7 @@ const columns = [
       title: "is_admin",
     },
     body: {
-      value: (row) => row.is_admin ? <Icon cls="check-square-fill"/> : "",
+      value: (row) => (row.is_admin ? <Icon cls="check-square-fill" /> : ""),
     },
     width: 4,
   },
@@ -78,7 +75,7 @@ const columns = [
       title: "last_login",
     },
     body: {
-      value: "last_login",
+      value: (row) => <DateRelative value={row.last_login} />,
     },
     width: 4,
     sortable: "last_login",

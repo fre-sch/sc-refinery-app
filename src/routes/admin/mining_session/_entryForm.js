@@ -46,7 +46,7 @@ class MiningSessionEntryForm extends Component {
         )
 
     return (
-      <form class="mt-3 mb-3" action="javascript:void(0)">
+      <form class="mt-3 mb-3 col-xl-6" action="javascript:void(0)">
         <UserSearchInput
           id="mining-session-entry-user"
           label="User"

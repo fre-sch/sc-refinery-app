@@ -12,7 +12,7 @@ class UserForm extends Component {
     return (
       <form class="container-fluid" action="javascript:void(0)">
         <div class="row">
-          <div class="col">
+          <div class="col-md-6 mb-3">
             <Input
               label="Email address"
               type="text"
@@ -76,7 +76,7 @@ class UserForm extends Component {
               </label>
             </div>
           </div>
-          <div class="col">
+          <div class="col-md-6">
             <h5>Friends</h5>
             <UserFriends
               model={model.friends}
@@ -84,7 +84,7 @@ class UserForm extends Component {
             />
           </div>
         </div>
-        <div class="text-end mt-3">
+        <div class="text-end">
           {onDelete !== undefined && (
             <button
               type="submit"

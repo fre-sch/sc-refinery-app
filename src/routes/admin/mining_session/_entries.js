@@ -20,8 +20,7 @@ const columns = [
       title: "user",
     },
     body: {
-      value: "user.name",
-      classnames: "text-ellipsis"
+      value: "user.name"
     },
   },
   {
@@ -84,6 +83,14 @@ const columns = [
       )
     },
   },
+  {
+    header: {
+      title: "created",
+    },
+    body: {
+      value: "created",
+    },
+  }
 ]
 
 const totalProfit = ({ entries }) => entries.reduce((acc, entry) => acc + entry.profit, 0).toFixed(2)

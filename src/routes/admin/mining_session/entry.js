@@ -1,4 +1,5 @@
 import { useEffect } from "preact/hooks"
+import { route } from "preact-router"
 import { useAppContext } from "../../../components/app"
 import { useActionReducer } from "../../../util"
 import constants from "../../../constants"
@@ -82,8 +83,8 @@ const AdminMiningSessionEntryEdit = ({ modelId, entryId }) => {
       .api().post("mining_session", state.session.id, "entry")
       .json(entry)
       .fetch()
-      .then((response) => response.json())
       .then((context) => {
+        console.debug("entryCreate", context, state)
         route(`${constants.BASEURL}/admin/mining_session/${state.session.id}/entry`)
       })
       .catch(() => {

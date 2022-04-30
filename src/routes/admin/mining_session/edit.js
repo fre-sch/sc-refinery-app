@@ -1,5 +1,5 @@
-import { useEffect, useReducer } from "preact/hooks"
-import { Router } from "preact-router"
+import { useEffect } from "preact/hooks"
+import { Router, route } from "preact-router"
 import { useAppContext } from "../../../components/app"
 import { useActionReducer } from "../../../util"
 import constants from "../../../constants"
@@ -73,6 +73,20 @@ const AdminMiningSessionEdit = ({ modelId }) => {
       })
   }
 
+  const onDelete = (model) => {
+    dispatch.loading()
+    apiConnector
+      .api()
+      .delete("mining_session", model.id)
+      .fetch()
+      .then((context) => {
+        route(constants.BASEURL + "/admin/mining_session")
+      })
+      .catch(() => {
+        dispatch.loadFailure()
+      })
+  }
+
   return (
     <div class="m-3 flex-grow-1">
       <Spinner isReady={state.isReady}>
@@ -92,6 +106,8 @@ const AdminMiningSessionEdit = ({ modelId }) => {
             id="tab-mining-session-base-data"
             model={state.model}
             path={constants.BASEURL + "/admin/mining_session/:modelId"}
+            onSave={onSave}
+            onDelete={onDelete}
           />
           <MiningSessionEntries
             id="tab-mining-session-entries"

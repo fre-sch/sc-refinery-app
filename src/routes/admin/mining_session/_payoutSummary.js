@@ -23,10 +23,9 @@ export default ({ model }) => {
   }, [model, model.id, model.users_invited, model.entries])
 
   return (
-    <div id="tab-mining-session-payout-summary" class="mt-3">
+    <div id="tab-mining-session-payout-summary" class="mt-3 col-md-6">
       <section
         id="payout-summary"
-        class="col-xl-3"
         style="display:grid; grid-template:auto/max-content 1fr; gap:0.3rem"
       >
         <div>Total profit:</div>
@@ -34,7 +33,7 @@ export default ({ model }) => {
         <div>Average profit:</div>
         <div class="text-end">{Number(state.average_profit).toFixed(2)}</div>
       </section>
-      <section id="payout-users-profit" class="mt-3 col-xl-3">
+      <section id="payout-users-profit" class="mt-3">
         <h5>User profits</h5>
         <table class="table border">
           <tbody>
@@ -50,7 +49,7 @@ export default ({ model }) => {
       <section id="payout-pending" class="mt-3">
         <h5>Payouts pending</h5>
         {state.payouts?.map((item) => (
-          <div key={item.user.id} class="col-xl-3">
+          <div key={item.user.id}>
             <h6>{item.user.name}</h6>
             <table class="table border">
               <tbody>

@@ -11,7 +11,7 @@ const DataTable = ({
   children
 }) => (
   <div class="data-table position-relative">
-    <table class="table table-hover table-sm p-0" style="table-layout: fixed">
+    <table class="table table-hover table-sm p-0 table-fixed">
       <ColGroup columns={columns} />
       <TableHeader columns={columns} view={view} />
       <TableBody
@@ -95,7 +95,7 @@ const TableHeader = ({ columns, view }) => (
 const TableBody = ({ columns, items, view, onRowClicked }) => (
   <tbody>
     {items.map((item, index) =>
-      <tr key={index} onDblClick={(ev) => {
+      <tr key={index} onClick={(ev) => {
         onRowClicked(item)
       }
       }>{

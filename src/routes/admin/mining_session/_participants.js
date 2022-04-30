@@ -3,13 +3,14 @@ import UserSearchInput from "../_userSearchInput"
 
 const MiningSessionParticipants = ({ model, add, remove, onSave }) => {
   return (
-    <div class="mining-session-participants">
-      <div class="user-list-grid mt-3 mb-3">
+    <div class="mining-session-participants mt-3 col-md-6">
+      <div class="user-list-grid mb-3">
         {model.users_invited.map((user) => (
           <button
             title={user.name}
             class="btn btn-danger-hover text-nowrap text-start text-ellipsis"
-            onClick={() => remove(user)}>
+            onClick={() => remove(user)}
+          >
             <Icon cls="x-square-fill" />
             {user.name}
           </button>
@@ -22,7 +23,11 @@ const MiningSessionParticipants = ({ model, add, remove, onSave }) => {
         clearOnChange={true}
       />
       <div class="mt-3 text-end">
-        <button type="button" class="btn btn-primary" onClick={() => onSave(model)}>
+        <button
+          type="button"
+          class="btn btn-primary"
+          onClick={() => onSave(model)}
+        >
           Save
         </button>
       </div>
